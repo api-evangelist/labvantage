@@ -1,0 +1,19 @@
+aid: labvantage
+url: https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/apis.yml
+apis:
+- aid: labvantage:labvantage-api
+  name: LabVantage / STARLIMS LIMS API
+  tags:
+  - Pharma
+  - Laboratory
+  - LIMS
+  - Quality
+  - SOAP
+  image: https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/image.png
+  humanURL: https://www.labvantage.com/
+  baseURL: https://api.labvantage.example.com
+  properties:
+  - url: https://www.labvantage.com/
+    type: Documentation
+  description: >-
+    LabVantage and STARLIMS provide Laboratory Information Management System (LIMS) APIs for sample tracking, test result management, instrument integration, and regulatory compliance. APIs support GxP-compliant data exchange for pharmaceutical, biotech, and clinical laboratories.
