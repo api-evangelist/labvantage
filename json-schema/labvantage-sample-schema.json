@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/labvantage/json-schema/labvantage-sample-schema.json",
+  "title": "LabVantage LIMS Sample",
+  "description": "JSON Schema for a LabVantage LIMS sample record. Represents a physical laboratory sample submitted for testing under GxP compliance requirements in pharmaceutical, biotech, or clinical laboratory environments.",
+  "type": "object",
+  "properties": {
+    "sampleId": {
+      "type": "string",
+      "description": "Unique LabVantage sample identifier (SDID — system-assigned)"
+    },
+    "sampleNumber": {
+      "type": "string",
+      "description": "Human-readable sample number (may include prefix/year/sequence)"
+    },
+    "sampleType": {
+      "type": "string",
+      "description": "Sample type code defining the sample class and applicable tests (e.g., TABLET, BULK_DRUG, RAW_MATERIAL)"
+    },
+    "sampleDescription": {
+      "type": "string",
+      "description": "Free-text description of the sample"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Pending", "In Progress", "Complete", "Rejected", "Disposed"],
+      "description": "Current sample lifecycle status"
+    },
+    "lotNumber": {
+      "type": "string",
+      "description": "Material lot or batch number for traceability"
+    },
+    "projectId": {
+      "type": "string",
+      "description": "Associated research or manufacturing project identifier"
+    },
+    "productId": {
+      "type": "string",
+      "description": "Product or material identifier"
+    },
+    "loginDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time the sample was registered (logged in) to the LIMS"
+    },
+    "loginUser": {
+      "type": "string",
+      "description": "Username of the analyst who logged in the sample"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date by which all testing must be completed"
+    },
+    "storageLocation": {
+      "type": "string",
+      "description": "Storage location identifier or description"
+    },
+    "quantity": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Initial sample quantity"
+    },
+    "quantityUnit": {
+      "type": "string",
+      "description": "Unit of measure for quantity (e.g., g, mL, mg, units)"
+    },
+    "tests": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Test" },
+      "description": "Test requests associated with this sample"
+    },
+    "customFields": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Sample type-specific custom field values (keys are configurable per sample type)"
+    }
+  },
+  "required": ["sampleId", "sampleType", "status", "lotNumber"],
+  "$defs": {
+    "Test": {
+      "type": "object",
+      "description": "A test request associated with a sample",
+      "properties": {
+        "testId": {
+          "type": "string"
+        },
+        "testMethod": {
+          "type": "string",
+          "description": "Test method code from the LabVantage method library"
+        },
+        "testMethodDescription": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Pending", "Scheduled", "In Progress", "Complete", "Cancelled", "Failed"]
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["ROUTINE", "URGENT", "STAT"]
+        },
+        "requestedDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "completedDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "assignedAnalyst": {
+          "type": "string"
+        },
+        "overallResult": {
+          "type": "string",
+          "enum": ["PASS", "FAIL", "OOS", "PENDING"],
+          "description": "OOS = Out of Specification"
+        }
+      },
+      "required": ["testId", "testMethod", "status"]
+    },
+    "Result": {
+      "type": "object",
+      "description": "A single test parameter result",
+      "properties": {
+        "resultId": { "type": "string" },
+        "parameterName": { "type": "string" },
+        "resultValue": {
+          "type": "string",
+          "description": "Entered result value as string (handles numeric, text, and list values)"
+        },
+        "resultNumeric": {
+          "type": "number",
+          "description": "Numeric interpretation of result value, if applicable"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "specMin": {
+          "type": "number",
+          "description": "Lower specification limit"
+        },
+        "specMax": {
+          "type": "number",
+          "description": "Upper specification limit"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["PASS", "FAIL", "OOS", "INCONCLUSIVE", "PENDING"]
+        },
+        "enteredBy": { "type": "string" },
+        "enteredDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "approvedBy": { "type": "string" },
+        "approvedDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["parameterName", "resultValue", "status"]
+    }
+  }
+}

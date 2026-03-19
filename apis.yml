@@ -18,6 +18,8 @@ apis:
     type: Documentation
   - url: https://www.labvantage.com/services/customer-care/
     type: Support
+  - url: openapi/labvantage-lims-openapi.yml
+    type: OpenAPI
   description: >-
     LabVantage LIMS (Laboratory Information Management System) APIs provide sample tracking, test result management, instrument integration, and regulatory compliance data exchange for pharmaceutical, biotech, and clinical laboratories under GxP compliance requirements.
 
@@ -84,6 +86,12 @@ common:
     type: Blog
   - url: https://www.labvantage.com/privacy-policy/
     type: Privacy Policy
+  - url: openapi/labvantage-lims-openapi.yml
+    type: OpenAPI
+  - url: json-schema/labvantage-sample-schema.json
+    type: JSONSchema
+  - url: json-ld/labvantage-context.jsonld
+    type: JSONLDContext
 maintainer:
   name: Kin Lane
   email: kin@apievangelist.com

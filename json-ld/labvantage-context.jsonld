@@ -1,0 +1,121 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct": "http://purl.org/dc/terms/",
+    "sio": "http://semanticscience.org/resource/",
+    "obo": "http://purl.obolibrary.org/obo/",
+
+    "Sample": {
+      "@id": "sio:SIO_000744",
+      "@type": "@id",
+      "@comment": "SIO:000744 = sample"
+    },
+    "Test": {
+      "@id": "sio:SIO_000654",
+      "@type": "@id",
+      "@comment": "SIO:000654 = assay"
+    },
+    "Result": {
+      "@id": "sio:SIO_000414",
+      "@type": "@id",
+      "@comment": "SIO:000414 = laboratory test result"
+    },
+    "Instrument": {
+      "@id": "sio:SIO_000956",
+      "@type": "@id",
+      "@comment": "SIO:000956 = laboratory instrument"
+    },
+
+    "sampleId": "schema:identifier",
+    "sampleNumber": "schema:identifier",
+    "sampleType": "schema:additionalType",
+    "sampleDescription": "schema:description",
+    "status": "schema:actionStatus",
+    "lotNumber": {
+      "@id": "schema:serialNumber",
+      "@type": "xsd:string"
+    },
+    "projectId": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    },
+    "productId": {
+      "@id": "schema:productID",
+      "@type": "xsd:string"
+    },
+    "loginDate": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "loginUser": "schema:creator",
+    "dueDate": {
+      "@id": "schema:expires",
+      "@type": "xsd:dateTime"
+    },
+    "storageLocation": "schema:location",
+    "quantity": {
+      "@id": "schema:amount",
+      "@type": "xsd:decimal"
+    },
+    "quantityUnit": "schema:unitCode",
+
+    "testId": "schema:identifier",
+    "testMethod": "schema:additionalType",
+    "testMethodDescription": "schema:description",
+    "priority": "schema:priority",
+    "requestedDate": {
+      "@id": "schema:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "completedDate": {
+      "@id": "schema:endDate",
+      "@type": "xsd:dateTime"
+    },
+    "assignedAnalyst": "schema:agent",
+    "overallResult": "schema:result",
+
+    "resultId": "schema:identifier",
+    "parameterName": "schema:name",
+    "resultValue": "schema:value",
+    "resultNumeric": {
+      "@id": "schema:value",
+      "@type": "xsd:decimal"
+    },
+    "unit": "schema:unitCode",
+    "specMin": {
+      "@id": "schema:minValue",
+      "@type": "xsd:decimal"
+    },
+    "specMax": {
+      "@id": "schema:maxValue",
+      "@type": "xsd:decimal"
+    },
+    "enteredBy": "schema:creator",
+    "enteredDate": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "approvedBy": "schema:accountablePerson",
+    "approvedDate": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+
+    "instrumentId": "schema:identifier",
+    "name": "schema:name",
+    "instrumentType": "schema:additionalType",
+    "manufacturer": "schema:manufacturer",
+    "model": "schema:model",
+    "serialNumber": "schema:serialNumber",
+    "lastCalibrationDate": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:date"
+    },
+    "nextCalibrationDate": {
+      "@id": "schema:expires",
+      "@type": "xsd:date"
+    }
+  }
+}

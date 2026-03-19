@@ -1,0 +1,676 @@
+openapi: 3.1.0
+info:
+  title: LabVantage LIMS API
+  description: >-
+    LabVantage LIMS (Laboratory Information Management System) REST API for
+    sample management, test result recording, instrument integration, and
+    regulatory compliance data exchange. Supports GxP-compliant workflows
+    for pharmaceutical, biotech, and clinical laboratory environments. The
+    LabVantage REST API provides access to samples, tests, results, containers,
+    and laboratory schedules via JSON over HTTPS.
+  version: 8.8.0
+  contact:
+    name: LabVantage Customer Care
+    url: https://www.labvantage.com/services/customer-care/
+  license:
+    name: LabVantage License
+    url: https://www.labvantage.com/privacy-policy/
+externalDocs:
+  description: LabVantage Documentation
+  url: https://www.labvantage.com/
+
+servers:
+  - url: https://{instance}.labvantage.example.com/labvantage/rest/v1
+    description: LabVantage LIMS REST API
+    variables:
+      instance:
+        default: yourlab
+        description: LabVantage instance hostname prefix
+
+security:
+  - BasicAuth: []
+  - BearerAuth: []
+
+tags:
+  - name: Samples
+    description: Sample lifecycle management (login, tracking, disposal)
+  - name: Tests
+    description: Test requests and analytical procedures
+  - name: Results
+    description: Test result entry and retrieval
+  - name: Containers
+    description: Sample containers and storage management
+  - name: Instruments
+    description: Laboratory instrument integration
+
+paths:
+  /samples:
+    get:
+      operationId: listSamples
+      summary: List samples
+      description: Returns samples in the LIMS with optional filtering by status, sample type, project, and date range.
+      tags: [Samples]
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [Pending, In Progress, Complete, Rejected, Disposed]
+        - name: sampleType
+          in: query
+          schema:
+            type: string
+          description: Sample type code (e.g., "BLOOD", "PLASMA", "TABLET")
+        - name: projectId
+          in: query
+          schema:
+            type: string
+        - name: lotNumber
+          in: query
+          schema:
+            type: string
+        - name: dateFrom
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: dateTo
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            default: 25
+            maximum: 200
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: Sample list returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SampleList'
+        '401':
+          description: Unauthorized
+
+    post:
+      operationId: loginSample
+      summary: Login (register) a sample
+      description: Logs in a new sample to the LIMS, creating a sample record with assigned sample ID, lot number, and initial status. Required before tests can be requested.
+      tags: [Samples]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SampleLoginRequest'
+      responses:
+        '201':
+          description: Sample logged in successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sample'
+        '400':
+          description: Invalid sample data
+        '422':
+          description: Business rule violation (e.g., duplicate lot number)
+
+  /samples/{sampleId}:
+    get:
+      operationId: getSample
+      summary: Get sample details
+      description: Returns detailed information for a specific sample including all tests, results, and chain of custody information.
+      tags: [Samples]
+      parameters:
+        - name: sampleId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: LabVantage sample identifier (SDID)
+      responses:
+        '200':
+          description: Sample returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sample'
+        '404':
+          description: Sample not found
+
+    patch:
+      operationId: updateSample
+      summary: Update sample
+      description: Updates mutable fields on a sample record (status, storage location, notes). GxP audit trail is automatically generated.
+      tags: [Samples]
+      parameters:
+        - name: sampleId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SampleUpdate'
+      responses:
+        '200':
+          description: Sample updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sample'
+        '404':
+          description: Sample not found
+
+  /samples/{sampleId}/tests:
+    get:
+      operationId: listSampleTests
+      summary: List tests for a sample
+      description: Returns all test requests associated with a sample including status, assigned analyst, and results.
+      tags: [Tests]
+      parameters:
+        - name: sampleId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [Pending, In Progress, Complete, Cancelled]
+      responses:
+        '200':
+          description: Tests returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestList'
+
+    post:
+      operationId: requestTest
+      summary: Request a test
+      description: Creates a new test request for a sample. The test method must be defined in the LabVantage method library.
+      tags: [Tests]
+      parameters:
+        - name: sampleId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestRequest'
+      responses:
+        '201':
+          description: Test request created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Test'
+        '400':
+          description: Invalid test request
+
+  /tests/{testId}/results:
+    get:
+      operationId: getTestResults
+      summary: Get test results
+      description: Returns all result parameters for a specific test including values, units, specifications, and pass/fail status.
+      tags: [Results]
+      parameters:
+        - name: testId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Test identifier
+      responses:
+        '200':
+          description: Test results returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultList'
+        '404':
+          description: Test not found
+
+    post:
+      operationId: enterTestResults
+      summary: Enter test results
+      description: >-
+        Enters result values for test parameters. Results are validated against
+        specification limits. GxP electronic signatures can be required based on
+        system configuration and result type. Out-of-specification (OOS) results
+        trigger configured workflow actions.
+      tags: [Results]
+      parameters:
+        - name: testId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResultEntryRequest'
+      responses:
+        '200':
+          description: Results entered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultList'
+        '400':
+          description: Invalid result data
+        '409':
+          description: Test already completed or locked
+
+  /containers:
+    get:
+      operationId: listContainers
+      summary: List containers
+      description: Returns sample containers in the LIMS with optional filtering by location, sample, and container type.
+      tags: [Containers]
+      parameters:
+        - name: sampleId
+          in: query
+          schema:
+            type: string
+        - name: locationId
+          in: query
+          schema:
+            type: string
+        - name: containerType
+          in: query
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            default: 25
+      responses:
+        '200':
+          description: Containers returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContainerList'
+
+  /instruments:
+    get:
+      operationId: listInstruments
+      summary: List instruments
+      description: Returns laboratory instruments registered in the LIMS including calibration status and assigned methods.
+      tags: [Instruments]
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [Active, Out of Service, Calibration Due]
+        - name: instrumentType
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Instruments returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstrumentList'
+
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication (username:password)
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication
+
+  schemas:
+    Sample:
+      type: object
+      properties:
+        sampleId:
+          type: string
+          description: LabVantage LIMS sample identifier (SDID)
+        sampleNumber:
+          type: string
+          description: Human-readable sample number
+        sampleType:
+          type: string
+          description: Sample type code
+        sampleDescription:
+          type: string
+        status:
+          type: string
+          enum: [Pending, In Progress, Complete, Rejected, Disposed]
+        lotNumber:
+          type: string
+          description: Material lot/batch number
+        projectId:
+          type: string
+        productId:
+          type: string
+        loginDate:
+          type: string
+          format: date-time
+          description: Date/time the sample was logged into the LIMS
+        loginUser:
+          type: string
+        dueDate:
+          type: string
+          format: date-time
+        storageLocation:
+          type: string
+        quantity:
+          type: number
+        quantityUnit:
+          type: string
+        tests:
+          type: array
+          items:
+            $ref: '#/components/schemas/Test'
+
+    SampleList:
+      type: object
+      properties:
+        samples:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sample'
+        total:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
+
+    SampleLoginRequest:
+      type: object
+      required: [sampleType, lotNumber]
+      properties:
+        sampleType:
+          type: string
+        lotNumber:
+          type: string
+        sampleDescription:
+          type: string
+        projectId:
+          type: string
+        productId:
+          type: string
+        quantity:
+          type: number
+        quantityUnit:
+          type: string
+        dueDate:
+          type: string
+          format: date-time
+        storageLocation:
+          type: string
+        customFields:
+          type: object
+          additionalProperties: true
+          description: Sample type-specific custom field values
+
+    SampleUpdate:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [Pending, In Progress, Complete, Rejected, Disposed]
+        storageLocation:
+          type: string
+        notes:
+          type: string
+        dueDate:
+          type: string
+          format: date-time
+
+    Test:
+      type: object
+      properties:
+        testId:
+          type: string
+        sampleId:
+          type: string
+        testMethod:
+          type: string
+          description: Test method code
+        testMethodDescription:
+          type: string
+        status:
+          type: string
+          enum: [Pending, Scheduled, In Progress, Complete, Cancelled, Failed]
+        priority:
+          type: string
+          enum: [ROUTINE, URGENT, STAT]
+        requestedDate:
+          type: string
+          format: date-time
+        scheduledDate:
+          type: string
+          format: date-time
+        completedDate:
+          type: string
+          format: date-time
+        assignedAnalyst:
+          type: string
+        instrumentId:
+          type: string
+        overallResult:
+          type: string
+          enum: [PASS, FAIL, OOS, PENDING]
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result'
+
+    TestList:
+      type: object
+      properties:
+        tests:
+          type: array
+          items:
+            $ref: '#/components/schemas/Test'
+        total:
+          type: integer
+
+    TestRequest:
+      type: object
+      required: [testMethod]
+      properties:
+        testMethod:
+          type: string
+          description: Test method code from the LabVantage method library
+        priority:
+          type: string
+          enum: [ROUTINE, URGENT, STAT]
+          default: ROUTINE
+        dueDate:
+          type: string
+          format: date-time
+        assignedAnalyst:
+          type: string
+        instrumentId:
+          type: string
+        notes:
+          type: string
+
+    Result:
+      type: object
+      properties:
+        resultId:
+          type: string
+        testId:
+          type: string
+        parameterName:
+          type: string
+          description: Test parameter name
+        resultValue:
+          type: string
+          description: Entered result value (stored as string to handle numeric, text, and list values)
+        resultNumeric:
+          type: number
+          description: Numeric interpretation of the result value
+        unit:
+          type: string
+          description: Unit of measure
+        specMin:
+          type: number
+          description: Specification lower limit
+        specMax:
+          type: number
+          description: Specification upper limit
+        specText:
+          type: string
+          description: Text specification (for non-numeric results)
+        status:
+          type: string
+          enum: [PASS, FAIL, OOS, INCONCLUSIVE, PENDING]
+        enteredBy:
+          type: string
+        enteredDate:
+          type: string
+          format: date-time
+        approvedBy:
+          type: string
+        approvedDate:
+          type: string
+          format: date-time
+
+    ResultList:
+      type: object
+      properties:
+        testId:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result'
+        overallStatus:
+          type: string
+          enum: [PASS, FAIL, OOS, PENDING]
+
+    ResultEntryRequest:
+      type: object
+      required: [results]
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            required: [parameterName, resultValue]
+            properties:
+              parameterName:
+                type: string
+              resultValue:
+                type: string
+              unit:
+                type: string
+        electronicSignature:
+          type: object
+          description: Electronic signature for GxP-controlled result entry
+          properties:
+            username:
+              type: string
+            password:
+              type: string
+            reason:
+              type: string
+              enum: [APPROVAL, REVIEW, AUTHORSHIP]
+
+    Container:
+      type: object
+      properties:
+        containerId:
+          type: string
+        containerType:
+          type: string
+        sampleId:
+          type: string
+        label:
+          type: string
+        barcode:
+          type: string
+        locationId:
+          type: string
+        quantity:
+          type: number
+        quantityUnit:
+          type: string
+        status:
+          type: string
+          enum: [Active, Empty, Disposed]
+        createdDate:
+          type: string
+          format: date-time
+
+    ContainerList:
+      type: object
+      properties:
+        containers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Container'
+        total:
+          type: integer
+
+    Instrument:
+      type: object
+      properties:
+        instrumentId:
+          type: string
+        name:
+          type: string
+        instrumentType:
+          type: string
+        manufacturer:
+          type: string
+        model:
+          type: string
+        serialNumber:
+          type: string
+        status:
+          type: string
+          enum: [Active, Out of Service, Calibration Due]
+        lastCalibrationDate:
+          type: string
+          format: date
+        nextCalibrationDate:
+          type: string
+          format: date
+        location:
+          type: string
+
+    InstrumentList:
+      type: object
+      properties:
+        instruments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Instrument'
+        total:
+          type: integer
