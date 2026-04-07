@@ -32,17 +32,17 @@ security:
   - BearerAuth: []
 
 tags:
-  - name: Samples
-    description: Sample lifecycle management (login, tracking, disposal)
-  - name: Tests
-    description: Test requests and analytical procedures
-  - name: Results
-    description: Test result entry and retrieval
   - name: Containers
     description: Sample containers and storage management
   - name: Instruments
     description: Laboratory instrument integration
 
+  - name: Results
+    description: Test result entry and retrieval
+  - name: Samples
+    description: Sample lifecycle management (login, tracking, disposal)
+  - name: Tests
+    description: Test requests and analytical procedures
 paths:
   /samples:
     get:

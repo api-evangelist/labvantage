@@ -1,18 +1,16 @@
 aid: labvantage
-url: 
-  https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/apis.yml
 apis:
   - aid: labvantage:labvantage-lims-api
     name: LabVantage LIMS API
     tags:
-      - Pharma
       - Laboratory
       - LIMS
+      - Pharma
       - Quality
-      - SOAP
       - REST
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/image.png
+      - SOAP
+    image: https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/image.png
     humanURL: https://www.labvantage.com/
     baseURL: https://api.labvantage.example.com
     properties:
@@ -31,13 +29,12 @@ apis:
   - aid: labvantage:labvantage-eln-api
     name: LabVantage ELN (Electronic Lab Notebook) API
     tags:
-      - Pharma
-      - Laboratory
       - ELN
-      - Scientific
+      - Laboratory
+      - Pharma
       - Research
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/image.png
+      - Scientific
+    image: https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/image.png
     humanURL: https://www.labvantage.com/products/
     baseURL: https://api.labvantage.example.com
     properties:
@@ -53,13 +50,12 @@ apis:
   - aid: labvantage:labvantage-sdms-api
     name: LabVantage SDMS (Scientific Data Management) API
     tags:
-      - Pharma
-      - Laboratory
-      - SDMS
-      - Scientific Data
       - Instrument Data
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/image.png
+      - Laboratory
+      - Pharma
+      - Scientific Data
+      - SDMS
+    image: https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/image.png
     humanURL: https://www.labvantage.com/products/
     baseURL: https://api.labvantage.example.com
     properties:
@@ -82,8 +78,7 @@ common:
     Data Management System) platforms with APIs for GxP-compliant data exchange in
     pharmaceutical, biotech, and clinical laboratory environments. Support is available
     24/7 globally through the VantageCare portal.
-  image: 
-    https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/image.png
+  image: https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/image.png
   tags:
     - Pharma
     - Laboratory
