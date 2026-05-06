@@ -1,0 +1,539 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: LabVantage LIMS API
+  description: LabVantage LIMS (Laboratory Information Management System) REST API for sample management, test result recording,
+    instrument integration, and regulatory compliance data exchange. Supports GxP-compliant workflows for pharmaceutical,
+    biotech, and clinical laboratory environments. The LabVantage REST API provides access to samples, tests, results, containers,
+    and laboratory schedules via JSON over HTTPS.
+  tags:
+  - Labvantage
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: labvantage
+    baseUri: https://yourlab.labvantage.example.com/labvantage/rest/v1
+    description: LabVantage LIMS API HTTP API.
+    authentication:
+      type: basic
+      username: '{{LABVANTAGE_USERNAME}}'
+      password: '{{LABVANTAGE_PASSWORD}}'
+    resources:
+    - name: samples
+      path: /samples
+      operations:
+      - name: listsamples
+        method: GET
+        description: List samples
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+        - name: sampleType
+          in: query
+          type: string
+          description: Sample type code (e.g., "BLOOD", "PLASMA", "TABLET")
+        - name: projectId
+          in: query
+          type: string
+        - name: lotNumber
+          in: query
+          type: string
+        - name: dateFrom
+          in: query
+          type: string
+        - name: dateTo
+          in: query
+          type: string
+        - name: pageSize
+          in: query
+          type: integer
+        - name: page
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: loginsample
+        method: POST
+        description: Login (register) a sample
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: samples-sampleid
+      path: /samples/{sampleId}
+      operations:
+      - name: getsample
+        method: GET
+        description: Get sample details
+        inputParameters:
+        - name: sampleId
+          in: path
+          type: string
+          required: true
+          description: LabVantage sample identifier (SDID)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatesample
+        method: PATCH
+        description: Update sample
+        inputParameters:
+        - name: sampleId
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: samples-sampleid-tests
+      path: /samples/{sampleId}/tests
+      operations:
+      - name: listsampletests
+        method: GET
+        description: List tests for a sample
+        inputParameters:
+        - name: sampleId
+          in: path
+          type: string
+          required: true
+        - name: status
+          in: query
+          type: string
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: requesttest
+        method: POST
+        description: Request a test
+        inputParameters:
+        - name: sampleId
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tests-testid-results
+      path: /tests/{testId}/results
+      operations:
+      - name: gettestresults
+        method: GET
+        description: Get test results
+        inputParameters:
+        - name: testId
+          in: path
+          type: string
+          required: true
+          description: Test identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: entertestresults
+        method: POST
+        description: Enter test results
+        inputParameters:
+        - name: testId
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: containers
+      path: /containers
+      operations:
+      - name: listcontainers
+        method: GET
+        description: List containers
+        inputParameters:
+        - name: sampleId
+          in: query
+          type: string
+        - name: locationId
+          in: query
+          type: string
+        - name: containerType
+          in: query
+          type: string
+        - name: pageSize
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: instruments
+      path: /instruments
+      operations:
+      - name: listinstruments
+        method: GET
+        description: List instruments
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+        - name: instrumentType
+          in: query
+          type: string
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: labvantage-rest
+    description: REST adapter for LabVantage LIMS API.
+    resources:
+    - path: /samples
+      name: listsamples
+      operations:
+      - method: GET
+        name: listsamples
+        description: List samples
+        call: labvantage.listsamples
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /samples
+      name: loginsample
+      operations:
+      - method: POST
+        name: loginsample
+        description: Login (register) a sample
+        call: labvantage.loginsample
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /samples/{sampleId}
+      name: getsample
+      operations:
+      - method: GET
+        name: getsample
+        description: Get sample details
+        call: labvantage.getsample
+        with:
+          sampleId: rest.sampleId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /samples/{sampleId}
+      name: updatesample
+      operations:
+      - method: PATCH
+        name: updatesample
+        description: Update sample
+        call: labvantage.updatesample
+        with:
+          sampleId: rest.sampleId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /samples/{sampleId}/tests
+      name: listsampletests
+      operations:
+      - method: GET
+        name: listsampletests
+        description: List tests for a sample
+        call: labvantage.listsampletests
+        with:
+          sampleId: rest.sampleId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /samples/{sampleId}/tests
+      name: requesttest
+      operations:
+      - method: POST
+        name: requesttest
+        description: Request a test
+        call: labvantage.requesttest
+        with:
+          sampleId: rest.sampleId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /tests/{testId}/results
+      name: gettestresults
+      operations:
+      - method: GET
+        name: gettestresults
+        description: Get test results
+        call: labvantage.gettestresults
+        with:
+          testId: rest.testId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /tests/{testId}/results
+      name: entertestresults
+      operations:
+      - method: POST
+        name: entertestresults
+        description: Enter test results
+        call: labvantage.entertestresults
+        with:
+          testId: rest.testId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /containers
+      name: listcontainers
+      operations:
+      - method: GET
+        name: listcontainers
+        description: List containers
+        call: labvantage.listcontainers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /instruments
+      name: listinstruments
+      operations:
+      - method: GET
+        name: listinstruments
+        description: List instruments
+        call: labvantage.listinstruments
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: labvantage-mcp
+    transport: http
+    description: MCP adapter for LabVantage LIMS API for AI agent use.
+    tools:
+    - name: listsamples
+      description: List samples
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: labvantage.listsamples
+      with:
+        status: tools.status
+        sampleType: tools.sampleType
+        projectId: tools.projectId
+        lotNumber: tools.lotNumber
+        dateFrom: tools.dateFrom
+        dateTo: tools.dateTo
+        pageSize: tools.pageSize
+        page: tools.page
+      inputParameters:
+      - name: status
+        type: string
+        description: status
+      - name: sampleType
+        type: string
+        description: Sample type code (e.g., "BLOOD", "PLASMA", "TABLET")
+      - name: projectId
+        type: string
+        description: projectId
+      - name: lotNumber
+        type: string
+        description: lotNumber
+      - name: dateFrom
+        type: string
+        description: dateFrom
+      - name: dateTo
+        type: string
+        description: dateTo
+      - name: pageSize
+        type: integer
+        description: pageSize
+      - name: page
+        type: integer
+        description: page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: loginsample
+      description: Login (register) a sample
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: labvantage.loginsample
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getsample
+      description: Get sample details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: labvantage.getsample
+      with:
+        sampleId: tools.sampleId
+      inputParameters:
+      - name: sampleId
+        type: string
+        description: LabVantage sample identifier (SDID)
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatesample
+      description: Update sample
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: labvantage.updatesample
+      with:
+        sampleId: tools.sampleId
+      inputParameters:
+      - name: sampleId
+        type: string
+        description: sampleId
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listsampletests
+      description: List tests for a sample
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: labvantage.listsampletests
+      with:
+        sampleId: tools.sampleId
+        status: tools.status
+      inputParameters:
+      - name: sampleId
+        type: string
+        description: sampleId
+        required: true
+      - name: status
+        type: string
+        description: status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: requesttest
+      description: Request a test
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: labvantage.requesttest
+      with:
+        sampleId: tools.sampleId
+      inputParameters:
+      - name: sampleId
+        type: string
+        description: sampleId
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettestresults
+      description: Get test results
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: labvantage.gettestresults
+      with:
+        testId: tools.testId
+      inputParameters:
+      - name: testId
+        type: string
+        description: Test identifier
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: entertestresults
+      description: Enter test results
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: labvantage.entertestresults
+      with:
+        testId: tools.testId
+      inputParameters:
+      - name: testId
+        type: string
+        description: testId
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listcontainers
+      description: List containers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: labvantage.listcontainers
+      with:
+        sampleId: tools.sampleId
+        locationId: tools.locationId
+        containerType: tools.containerType
+        pageSize: tools.pageSize
+      inputParameters:
+      - name: sampleId
+        type: string
+        description: sampleId
+      - name: locationId
+        type: string
+        description: locationId
+      - name: containerType
+        type: string
+        description: containerType
+      - name: pageSize
+        type: integer
+        description: pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listinstruments
+      description: List instruments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: labvantage.listinstruments
+      with:
+        status: tools.status
+        instrumentType: tools.instrumentType
+      inputParameters:
+      - name: status
+        type: string
+        description: status
+      - name: instrumentType
+        type: string
+        description: instrumentType
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    LABVANTAGE_USERNAME: LABVANTAGE_USERNAME
+    LABVANTAGE_PASSWORD: LABVANTAGE_PASSWORD
