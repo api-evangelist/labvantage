@@ -1,148 +1,90 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: LabVantage
+providerId: labvantage
+created: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
+tags:
+  - FinOps
+  - FOCUS
+  - LIMS
+  - Laboratory
+  - Pharma
+description: 'FOCUS-aligned FinOps for LabVantage: enterprise-licensed LIMS/ELN/LES/SDMS platform with
+  no per-API metering. Cost is dominated by the negotiated platform license plus the underlying compute
+  for the customer''s own deployment. FinOps signal therefore covers license utilization (named users,
+  sites, modules) and infrastructure cost separately.'
+sources:
+  - https://www.labvantage.com/
+notes: No public unit pricing for the API surface. License terms (perpetual + maintenance vs subscription)
+  are quoted per customer.
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-provider: labvantage
-providerId: labvantage
-publisherName: labvantage
-serviceCategory: API
-created: '2026-05-04'
-modified: '2026-05-04'
-tags:
-  - FinOps
-  - Cost Management
-  - FOCUS
-description: FinOps framework definition for the labvantage API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+publisherName: LabVantage Solutions, Inc.
+serviceCategory: Laboratory Informatics / LIMS
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Enterprise License (Perpetual or Subscription)
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
+    - Usage
     - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
-  ServiceName: labvantage
-  ServiceCategory: Developer Tools / API
-  ProviderName: labvantage
-  PublisherName: labvantage
-  InvoiceIssuerName: labvantage
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  ServiceName: LabVantage Platform
+  ServiceCategory: Laboratory Informatics / LIMS
+  ProviderName: LabVantage
+  PublisherName: LabVantage Solutions, Inc.
+  InvoiceIssuerName: LabVantage Solutions, Inc.
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
+  - name: named_users
+    unit: seat
+    aggregation: max
+    dimensions:
+      - module
+      - site
+  - name: concurrent_users
+    unit: session
+    aggregation: max
+    dimensions:
+      - module
+  - name: instrument_integrations
+    unit: instrument
+    aggregation: max
+    dimensions:
+      - site
   - name: api_requests
-    description: Count of billable API requests
     unit: request
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
+      - protocol
+      - module
+      - site
+  - name: storage_consumed
     unit: GB
-    aggregation: sum
+    aggregation: max
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: LabVantage LIMS API
-    baseURL: https://api.labvantage.example.com
-    tags:
-      - Laboratory
-      - LIMS
-      - Pharma
-      - Quality
-      - REST
-      - SOAP
-    serviceName: LabVantage LIMS API
-    serviceCategory: API
-  - name: LabVantage ELN (Electronic Lab Notebook) API
-    baseURL: https://api.labvantage.example.com
-    tags:
-      - ELN
-      - Laboratory
-      - Pharma
-      - Research
-      - Scientific
-    serviceName: LabVantage ELN (Electronic Lab Notebook) API
-    serviceCategory: API
-  - name: LabVantage SDMS (Scientific Data Management) API
-    baseURL: https://api.labvantage.example.com
-    tags:
-      - Instrument Data
-      - Laboratory
-      - Pharma
-      - Scientific Data
-      - SDMS
-    serviceName: LabVantage SDMS (Scientific Data Management) API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
-maintainers: []
+      - module
+principles:
+  - name: Visibility
+    description: Capture seat utilization and integration counts per module against contracted entitlements;
+      monitor underlying infrastructure cost (compute, DB, storage) for the deployment.
+  - name: Allocation
+    description: Allocate license cost per site / lab / project; pair the license bill with the infra
+      bill so total cost-of-ownership is visible to the lab informatics team.
+  - name: Optimization
+    description: Reclaim inactive named-user seats; consolidate test instances; right-size the application
+      server tier; archive aged study/sample data to lower-tier storage.
+  - name: Accountability
+    description: Lab informatics or QA owns the LabVantage agreement and module roster; reviews user
+      entitlements quarterly ahead of renewal.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
