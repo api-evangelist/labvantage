@@ -111,3 +111,29 @@ modified: '2026-04-28'
 description: >-
   LabVantage Solutions provides an end-to-end laboratory informatics platform that
   work for everyone from operators, to the QC lab, to the C-suite.
+integrations:
+  - name: LabVantage
+  - name: Al Essa Group
+  - name: Analytical Instruments
+  - name: Biomedic
+  - name: Cryogen
+  - name: logo CustomLearningTech
+  - name: CSE Global
+  - name: IBM
+  - name: logoiNFse
+  - name: IVG
+  - name: logoMicrosoft
+  - name: logoMitsubishi
+  - name: logo NWA
+  - name: logoOracle
+  - name: logoRedHat
+  - name: SAP
+  - name: Scitara
+  - name: Clin-nov
+  - name: logoWaters
+  - name: dksh
+  - name: nnit
+  - name: lasec
+  - name: techno service
+  - name: logo white space
+  - name: LabVantage Solutions
