@@ -97,7 +97,7 @@ common:
     - url: https://www.labvantage.com/resources/blog/
       type: Blog
     - url: https://www.labvantage.com/privacy-policy/
-      type: Privacy Policy
+      type: PrivacyPolicy
     - url: openapi/labvantage-lims-openapi.yml
       type: OpenAPI
     - url: json-schema/labvantage-sample-schema.json
