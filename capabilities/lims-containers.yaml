@@ -1,0 +1,93 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: LabVantage LIMS API — Containers
+  description: 'LabVantage LIMS API — Containers. 1 operations. Lead operation: List containers. Self-contained Naftiko capability
+    covering one Labvantage business surface.'
+  tags:
+  - Labvantage
+  - Containers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LABVANTAGE_API_KEY: LABVANTAGE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lims-containers
+    baseUri: https://{instance}.labvantage.example.com/labvantage/rest/v1
+    description: LabVantage LIMS API — Containers business capability. Self-contained, no shared references.
+    resources:
+    - name: containers
+      path: /containers
+      operations:
+      - name: listcontainers
+        method: GET
+        description: List containers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sampleId
+          in: query
+          type: string
+        - name: locationId
+          in: query
+          type: string
+        - name: containerType
+          in: query
+          type: string
+        - name: pageSize
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.LABVANTAGE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lims-containers-rest
+    port: 8080
+    description: REST adapter for LabVantage LIMS API — Containers. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/containers
+      name: containers
+      description: REST surface for containers.
+      operations:
+      - method: GET
+        name: listcontainers
+        description: List containers
+        call: lims-containers.listcontainers
+        with:
+          sampleId: rest.sampleId
+          locationId: rest.locationId
+          containerType: rest.containerType
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lims-containers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for LabVantage LIMS API — Containers. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-containers
+      description: List containers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lims-containers.listcontainers
+      with:
+        sampleId: tools.sampleId
+        locationId: tools.locationId
+        containerType: tools.containerType
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.

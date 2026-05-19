@@ -70,6 +70,8 @@ apis:
       environments.
 
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/labvantage
   aid: labvantage
   name: LabVantage Solutions
   description: >-
