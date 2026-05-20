@@ -72,40 +72,40 @@ apis:
 common:
   - type: LinkedIn
     url: https://www.linkedin.com/company/labvantage
-  aid: labvantage
-  name: LabVantage Solutions
-  description: >-
-    LabVantage Solutions provides LIMS (Laboratory Information Management System),
-    ELN (Electronic Lab Notebook), LES (Laboratory Execution System), and SDMS (Scientific
-    Data Management System) platforms with APIs for GxP-compliant data exchange in
-    pharmaceutical, biotech, and clinical laboratory environments. Support is available
-    24/7 globally through the VantageCare portal.
-  image: https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/image.png
-  tags:
-    - Pharma
-    - Laboratory
-    - LIMS
-    - Quality
-    - GxP
-  properties:
-    - url: https://www.labvantage.com/
-      type: Portal
-    - url: https://www.labvantage.com/
-      type: Documentation
-    - url: https://www.labvantage.com/
-      type: Website
-    - url: https://www.labvantage.com/services/customer-care/
-      type: Support
-    - url: https://www.labvantage.com/resources/blog/
-      type: Blog
-    - url: https://www.labvantage.com/privacy-policy/
-      type: PrivacyPolicy
-    - url: openapi/labvantage-lims-openapi.yml
-      type: OpenAPI
-    - url: json-schema/labvantage-sample-schema.json
-      type: JSONSchema
-    - url: json-ld/labvantage-context.jsonld
-      type: JSONLDContext
+aid: labvantage
+name: LabVantage Solutions
+description: >-
+  LabVantage Solutions provides LIMS (Laboratory Information Management System),
+  ELN (Electronic Lab Notebook), LES (Laboratory Execution System), and SDMS (Scientific
+  Data Management System) platforms with APIs for GxP-compliant data exchange in
+  pharmaceutical, biotech, and clinical laboratory environments. Support is available
+  24/7 globally through the VantageCare portal.
+image: https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/image.png
+tags:
+  - Pharma
+  - Laboratory
+  - LIMS
+  - Quality
+  - GxP
+properties:
+  - url: https://www.labvantage.com/
+    type: Portal
+  - url: https://www.labvantage.com/
+    type: Documentation
+  - url: https://www.labvantage.com/
+    type: Website
+  - url: https://www.labvantage.com/services/customer-care/
+    type: Support
+  - url: https://www.labvantage.com/resources/blog/
+    type: Blog
+  - url: https://www.labvantage.com/privacy-policy/
+    type: PrivacyPolicy
+  - url: openapi/labvantage-lims-openapi.yml
+    type: OpenAPI
+  - url: json-schema/labvantage-sample-schema.json
+    type: JSONSchema
+  - url: json-ld/labvantage-context.jsonld
+    type: JSONLDContext
 maintainer:
   name: Kin Lane
   email: kin@apievangelist.com
