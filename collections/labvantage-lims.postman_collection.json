@@ -1,0 +1,1897 @@
+{
+  "item": [
+    {
+      "id": "4c2087c0-c511-4cc1-8d81-a12017f434cc",
+      "name": "Containers",
+      "description": {
+        "content": "Sample containers and storage management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e6c8aab7-3167-486a-9992-71506552647b",
+          "name": "List containers",
+          "request": {
+            "name": "List containers",
+            "description": {
+              "content": "Returns sample containers in the LIMS with optional filtering by location, sample, and container type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "containers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sampleId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "locationId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "containerType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "LabVantage instance hostname prefix",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd486822-9fed-4197-848d-b05ae751c1fc",
+              "name": "Containers returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "containers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sampleId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "containerType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"containers\": [\n    {\n      \"containerId\": \"string\",\n      \"containerType\": \"string\",\n      \"sampleId\": \"string\",\n      \"label\": \"string\",\n      \"barcode\": \"string\",\n      \"locationId\": \"string\",\n      \"quantity\": 2794.511591357345,\n      \"quantityUnit\": \"string\",\n      \"status\": \"Empty\",\n      \"createdDate\": \"2017-08-31T19:27:32.819Z\"\n    },\n    {\n      \"containerId\": \"string\",\n      \"containerType\": \"string\",\n      \"sampleId\": \"string\",\n      \"label\": \"string\",\n      \"barcode\": \"string\",\n      \"locationId\": \"string\",\n      \"quantity\": 6152.725878624775,\n      \"quantityUnit\": \"string\",\n      \"status\": \"Empty\",\n      \"createdDate\": \"2024-12-19T02:10:25.299Z\"\n    }\n  ],\n  \"total\": 6187\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "be9eb1b5-30c8-4601-b75a-d1ad7dd56ede",
+      "name": "Instruments",
+      "description": {
+        "content": "Laboratory instrument integration",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e661a9a9-a4ed-4c2b-9d2e-ce45915435ac",
+          "name": "List instruments",
+          "request": {
+            "name": "List instruments",
+            "description": {
+              "content": "Returns laboratory instruments registered in the LIMS including calibration status and assigned methods.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instruments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "instrumentType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "LabVantage instance hostname prefix",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ccfc618a-2f50-4140-af4f-7fc90f937de5",
+              "name": "Instruments returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "instrumentType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"instruments\": [\n    {\n      \"instrumentId\": \"string\",\n      \"name\": \"string\",\n      \"instrumentType\": \"string\",\n      \"manufacturer\": \"string\",\n      \"model\": \"string\",\n      \"serialNumber\": \"string\",\n      \"status\": \"Out of Service\",\n      \"lastCalibrationDate\": \"1983-12-03\",\n      \"nextCalibrationDate\": \"2000-10-18\",\n      \"location\": \"string\"\n    },\n    {\n      \"instrumentId\": \"string\",\n      \"name\": \"string\",\n      \"instrumentType\": \"string\",\n      \"manufacturer\": \"string\",\n      \"model\": \"string\",\n      \"serialNumber\": \"string\",\n      \"status\": \"Active\",\n      \"lastCalibrationDate\": \"1955-10-19\",\n      \"nextCalibrationDate\": \"2017-02-01\",\n      \"location\": \"string\"\n    }\n  ],\n  \"total\": 1905\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "dcc20b6a-860f-470e-8020-26249bd0be2d",
+      "name": "Results",
+      "description": {
+        "content": "Test result entry and retrieval",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0008bc39-5b3b-474f-8664-d5595a6e692d",
+          "name": "Get test results",
+          "request": {
+            "name": "Get test results",
+            "description": {
+              "content": "Returns all result parameters for a specific test including values, units, specifications, and pass/fail status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tests",
+                ":testId",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "testId",
+                  "description": "(Required) Test identifier"
+                },
+                {
+                  "description": "LabVantage instance hostname prefix",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05d0f8f9-2349-404e-a4a4-9a5c533615f5",
+              "name": "Test results returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) Test identifier"
+                    },
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"testId\": \"string\",\n  \"results\": [\n    {\n      \"resultId\": \"string\",\n      \"testId\": \"string\",\n      \"parameterName\": \"string\",\n      \"resultValue\": \"string\",\n      \"resultNumeric\": 6957.5058202871305,\n      \"unit\": \"string\",\n      \"specMin\": 6607.068526095124,\n      \"specMax\": 7965.70237731055,\n      \"specText\": \"string\",\n      \"status\": \"FAIL\",\n      \"enteredBy\": \"string\",\n      \"enteredDate\": \"2023-10-07T05:05:31.885Z\",\n      \"approvedBy\": \"string\",\n      \"approvedDate\": \"2003-04-14T11:41:48.547Z\"\n    },\n    {\n      \"resultId\": \"string\",\n      \"testId\": \"string\",\n      \"parameterName\": \"string\",\n      \"resultValue\": \"string\",\n      \"resultNumeric\": 7719.5729827781615,\n      \"unit\": \"string\",\n      \"specMin\": 3082.126136409328,\n      \"specMax\": 176.47640415807797,\n      \"specText\": \"string\",\n      \"status\": \"PENDING\",\n      \"enteredBy\": \"string\",\n      \"enteredDate\": \"2022-10-22T11:01:34.710Z\",\n      \"approvedBy\": \"string\",\n      \"approvedDate\": \"2016-05-14T03:26:58.700Z\"\n    }\n  ],\n  \"overallStatus\": \"OOS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "351c4fdb-d4d7-4a0c-8cf7-3d2fc825bfd7",
+              "name": "Test not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) Test identifier"
+                    },
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02acea06-2698-4806-819e-d3fba92946cc",
+          "name": "Enter test results",
+          "request": {
+            "name": "Enter test results",
+            "description": {
+              "content": "Enters result values for test parameters. Results are validated against specification limits. GxP electronic signatures can be required based on system configuration and result type. Out-of-specification (OOS) results trigger configured workflow actions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tests",
+                ":testId",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "testId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "LabVantage instance hostname prefix",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"results\": [\n    {\n      \"parameterName\": \"<string>\",\n      \"resultValue\": \"<string>\",\n      \"unit\": \"<string>\"\n    },\n    {\n      \"parameterName\": \"<string>\",\n      \"resultValue\": \"<string>\",\n      \"unit\": \"<string>\"\n    }\n  ],\n  \"electronicSignature\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\",\n    \"reason\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ad86d33b-d79c-45ed-a381-ab0c0f5a4c42",
+              "name": "Results entered",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"results\": [\n    {\n      \"parameterName\": \"<string>\",\n      \"resultValue\": \"<string>\",\n      \"unit\": \"<string>\"\n    },\n    {\n      \"parameterName\": \"<string>\",\n      \"resultValue\": \"<string>\",\n      \"unit\": \"<string>\"\n    }\n  ],\n  \"electronicSignature\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\",\n    \"reason\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"testId\": \"string\",\n  \"results\": [\n    {\n      \"resultId\": \"string\",\n      \"testId\": \"string\",\n      \"parameterName\": \"string\",\n      \"resultValue\": \"string\",\n      \"resultNumeric\": 6957.5058202871305,\n      \"unit\": \"string\",\n      \"specMin\": 6607.068526095124,\n      \"specMax\": 7965.70237731055,\n      \"specText\": \"string\",\n      \"status\": \"FAIL\",\n      \"enteredBy\": \"string\",\n      \"enteredDate\": \"2023-10-07T05:05:31.885Z\",\n      \"approvedBy\": \"string\",\n      \"approvedDate\": \"2003-04-14T11:41:48.547Z\"\n    },\n    {\n      \"resultId\": \"string\",\n      \"testId\": \"string\",\n      \"parameterName\": \"string\",\n      \"resultValue\": \"string\",\n      \"resultNumeric\": 7719.5729827781615,\n      \"unit\": \"string\",\n      \"specMin\": 3082.126136409328,\n      \"specMax\": 176.47640415807797,\n      \"specText\": \"string\",\n      \"status\": \"PENDING\",\n      \"enteredBy\": \"string\",\n      \"enteredDate\": \"2022-10-22T11:01:34.710Z\",\n      \"approvedBy\": \"string\",\n      \"approvedDate\": \"2016-05-14T03:26:58.700Z\"\n    }\n  ],\n  \"overallStatus\": \"OOS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebf56022-f639-43dd-b9d9-d7fe9966d9cc",
+              "name": "Invalid result data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"results\": [\n    {\n      \"parameterName\": \"<string>\",\n      \"resultValue\": \"<string>\",\n      \"unit\": \"<string>\"\n    },\n    {\n      \"parameterName\": \"<string>\",\n      \"resultValue\": \"<string>\",\n      \"unit\": \"<string>\"\n    }\n  ],\n  \"electronicSignature\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\",\n    \"reason\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7cbf4b90-d14d-4fd0-ad64-7b73a46f5c5a",
+              "name": "Test already completed or locked",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"results\": [\n    {\n      \"parameterName\": \"<string>\",\n      \"resultValue\": \"<string>\",\n      \"unit\": \"<string>\"\n    },\n    {\n      \"parameterName\": \"<string>\",\n      \"resultValue\": \"<string>\",\n      \"unit\": \"<string>\"\n    }\n  ],\n  \"electronicSignature\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\",\n    \"reason\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f581de34-b187-4599-999b-436dc365ce98",
+      "name": "Samples",
+      "description": {
+        "content": "Sample lifecycle management (login, tracking, disposal)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b99f265f-e13c-4d34-887e-c6c38b5b24e0",
+          "name": "List samples",
+          "request": {
+            "name": "List samples",
+            "description": {
+              "content": "Returns samples in the LIMS with optional filtering by status, sample type, project, and date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "samples"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sampleType",
+                  "value": "<string>",
+                  "description": "Sample type code (e.g., \"BLOOD\", \"PLASMA\", \"TABLET\")"
+                },
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lotNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateFrom",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateTo",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "LabVantage instance hostname prefix",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "024ab5c2-4acf-4b5c-8dd6-b1ac6acce841",
+              "name": "Sample list returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "samples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sampleType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lotNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"samples\": [\n    {\n      \"sampleId\": \"string\",\n      \"sampleNumber\": \"string\",\n      \"sampleType\": \"string\",\n      \"sampleDescription\": \"string\",\n      \"status\": \"Disposed\",\n      \"lotNumber\": \"string\",\n      \"projectId\": \"string\",\n      \"productId\": \"string\",\n      \"loginDate\": \"2006-03-03T16:07:43.791Z\",\n      \"loginUser\": \"string\",\n      \"dueDate\": \"2019-05-08T23:11:47.749Z\",\n      \"storageLocation\": \"string\",\n      \"quantity\": 1297.5056758924163,\n      \"quantityUnit\": \"string\",\n      \"tests\": [\n        {\n          \"testId\": \"string\",\n          \"sampleId\": \"string\",\n          \"testMethod\": \"string\",\n          \"testMethodDescription\": \"string\",\n          \"status\": \"Complete\",\n          \"priority\": \"STAT\",\n          \"requestedDate\": \"1983-06-05T16:02:20.461Z\",\n          \"scheduledDate\": \"1970-05-23T02:56:44.590Z\",\n          \"completedDate\": \"1972-04-20T07:50:52.798Z\",\n          \"assignedAnalyst\": \"string\",\n          \"instrumentId\": \"string\",\n          \"overallResult\": \"OOS\",\n          \"results\": [\n            {\n              \"resultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"testId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parameterName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"resultValue\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"resultNumeric\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specMin\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specMax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specText\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"enteredBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"enteredDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approvedBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approvedDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"resultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"testId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parameterName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"resultValue\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"resultNumeric\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specMin\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specMax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specText\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"enteredBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"enteredDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approvedBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approvedDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"testId\": \"string\",\n          \"sampleId\": \"string\",\n          \"testMethod\": \"string\",\n          \"testMethodDescription\": \"string\",\n          \"status\": \"In Progress\",\n          \"priority\": \"URGENT\",\n          \"requestedDate\": \"1997-08-07T02:34:38.965Z\",\n          \"scheduledDate\": \"1969-02-13T09:20:34.823Z\",\n          \"completedDate\": \"1992-07-25T01:00:32.588Z\",\n          \"assignedAnalyst\": \"string\",\n          \"instrumentId\": \"string\",\n          \"overallResult\": \"PASS\",\n          \"results\": [\n            {\n              \"resultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"testId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parameterName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"resultValue\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"resultNumeric\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specMin\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specMax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specText\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"enteredBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"enteredDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approvedBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approvedDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"resultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"testId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parameterName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"resultValue\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"resultNumeric\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specMin\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specMax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specText\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"enteredBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"enteredDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approvedBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approvedDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"sampleId\": \"string\",\n      \"sampleNumber\": \"string\",\n      \"sampleType\": \"string\",\n      \"sampleDescription\": \"string\",\n      \"status\": \"Complete\",\n      \"lotNumber\": \"string\",\n      \"projectId\": \"string\",\n      \"productId\": \"string\",\n      \"loginDate\": \"2014-07-01T19:27:37.893Z\",\n      \"loginUser\": \"string\",\n      \"dueDate\": \"1995-09-15T00:07:36.492Z\",\n      \"storageLocation\": \"string\",\n      \"quantity\": 7686.268467837714,\n      \"quantityUnit\": \"string\",\n      \"tests\": [\n        {\n          \"testId\": \"string\",\n          \"sampleId\": \"string\",\n          \"testMethod\": \"string\",\n          \"testMethodDescription\": \"string\",\n          \"status\": \"Cancelled\",\n          \"priority\": \"ROUTINE\",\n          \"requestedDate\": \"2009-07-04T14:42:20.460Z\",\n          \"scheduledDate\": \"1971-04-29T11:04:41.991Z\",\n          \"completedDate\": \"2015-06-17T14:54:40.547Z\",\n          \"assignedAnalyst\": \"string\",\n          \"instrumentId\": \"string\",\n          \"overallResult\": \"FAIL\",\n          \"results\": [\n            {\n              \"resultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"testId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parameterName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"resultValue\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"resultNumeric\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specMin\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specMax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specText\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"enteredBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"enteredDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approvedBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approvedDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"resultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"testId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parameterName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"resultValue\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"resultNumeric\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specMin\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specMax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specText\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"enteredBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"enteredDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approvedBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approvedDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"testId\": \"string\",\n          \"sampleId\": \"string\",\n          \"testMethod\": \"string\",\n          \"testMethodDescription\": \"string\",\n          \"status\": \"Scheduled\",\n          \"priority\": \"STAT\",\n          \"requestedDate\": \"1962-04-19T14:10:30.330Z\",\n          \"scheduledDate\": \"1975-10-18T21:32:00.993Z\",\n          \"completedDate\": \"2005-05-11T22:52:03.286Z\",\n          \"assignedAnalyst\": \"string\",\n          \"instrumentId\": \"string\",\n          \"overallResult\": \"PENDING\",\n          \"results\": [\n            {\n              \"resultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"testId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parameterName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"resultValue\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"resultNumeric\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specMin\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specMax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specText\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"enteredBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"enteredDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approvedBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approvedDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"resultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"testId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parameterName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"resultValue\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"resultNumeric\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"unit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specMin\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specMax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"specText\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"enteredBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"enteredDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approvedBy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approvedDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"total\": 3413,\n  \"page\": 9984,\n  \"pageSize\": 3162\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2396575-858f-4bfa-a6a5-81d375771a04",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "samples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sampleType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lotNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b9d980a-906e-43af-8a29-d9fcb1ab32a5",
+          "name": "Login (register) a sample",
+          "request": {
+            "name": "Login (register) a sample",
+            "description": {
+              "content": "Logs in a new sample to the LIMS, creating a sample record with assigned sample ID, lot number, and initial status. Required before tests can be requested.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "samples"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "LabVantage instance hostname prefix",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sampleType\": \"<string>\",\n  \"lotNumber\": \"<string>\",\n  \"sampleDescription\": \"<string>\",\n  \"projectId\": \"<string>\",\n  \"productId\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"quantityUnit\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"storageLocation\": \"<string>\",\n  \"customFields\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c2f0264b-fec4-46f3-8194-9a8432dc33a5",
+              "name": "Sample logged in successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "samples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sampleType\": \"<string>\",\n  \"lotNumber\": \"<string>\",\n  \"sampleDescription\": \"<string>\",\n  \"projectId\": \"<string>\",\n  \"productId\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"quantityUnit\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"storageLocation\": \"<string>\",\n  \"customFields\": {\n    \"key_0\": 9889.071020121251,\n    \"key_1\": 3835,\n    \"key_2\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sampleId\": \"string\",\n  \"sampleNumber\": \"string\",\n  \"sampleType\": \"string\",\n  \"sampleDescription\": \"string\",\n  \"status\": \"Complete\",\n  \"lotNumber\": \"string\",\n  \"projectId\": \"string\",\n  \"productId\": \"string\",\n  \"loginDate\": \"1979-03-27T17:58:23.942Z\",\n  \"loginUser\": \"string\",\n  \"dueDate\": \"1984-07-14T04:26:53.910Z\",\n  \"storageLocation\": \"string\",\n  \"quantity\": 3349.2124163727776,\n  \"quantityUnit\": \"string\",\n  \"tests\": [\n    {\n      \"testId\": \"string\",\n      \"sampleId\": \"string\",\n      \"testMethod\": \"string\",\n      \"testMethodDescription\": \"string\",\n      \"status\": \"In Progress\",\n      \"priority\": \"ROUTINE\",\n      \"requestedDate\": \"2007-01-02T08:07:22.607Z\",\n      \"scheduledDate\": \"1960-05-11T06:11:51.363Z\",\n      \"completedDate\": \"2015-10-08T15:24:19.858Z\",\n      \"assignedAnalyst\": \"string\",\n      \"instrumentId\": \"string\",\n      \"overallResult\": \"OOS\",\n      \"results\": [\n        {\n          \"resultId\": \"string\",\n          \"testId\": \"string\",\n          \"parameterName\": \"string\",\n          \"resultValue\": \"string\",\n          \"resultNumeric\": 5049.555064745358,\n          \"unit\": \"string\",\n          \"specMin\": 643.6007591173254,\n          \"specMax\": 3021.8651545181983,\n          \"specText\": \"string\",\n          \"status\": \"FAIL\",\n          \"enteredBy\": \"string\",\n          \"enteredDate\": \"2009-01-09T21:50:39.866Z\",\n          \"approvedBy\": \"string\",\n          \"approvedDate\": \"1950-07-24T03:47:32.189Z\"\n        },\n        {\n          \"resultId\": \"string\",\n          \"testId\": \"string\",\n          \"parameterName\": \"string\",\n          \"resultValue\": \"string\",\n          \"resultNumeric\": 5246.259635347598,\n          \"unit\": \"string\",\n          \"specMin\": 1874.2768237808261,\n          \"specMax\": 3319.9211708608145,\n          \"specText\": \"string\",\n          \"status\": \"OOS\",\n          \"enteredBy\": \"string\",\n          \"enteredDate\": \"2018-02-18T17:16:27.658Z\",\n          \"approvedBy\": \"string\",\n          \"approvedDate\": \"2025-01-25T09:43:54.998Z\"\n        }\n      ]\n    },\n    {\n      \"testId\": \"string\",\n      \"sampleId\": \"string\",\n      \"testMethod\": \"string\",\n      \"testMethodDescription\": \"string\",\n      \"status\": \"Scheduled\",\n      \"priority\": \"ROUTINE\",\n      \"requestedDate\": \"1975-10-22T15:05:15.520Z\",\n      \"scheduledDate\": \"1980-01-15T13:16:47.889Z\",\n      \"completedDate\": \"1961-06-18T10:35:10.096Z\",\n      \"assignedAnalyst\": \"string\",\n      \"instrumentId\": \"string\",\n      \"overallResult\": \"PASS\",\n      \"results\": [\n        {\n          \"resultId\": \"string\",\n          \"testId\": \"string\",\n          \"parameterName\": \"string\",\n          \"resultValue\": \"string\",\n          \"resultNumeric\": 4628.483031401825,\n          \"unit\": \"string\",\n          \"specMin\": 8845.749900209488,\n          \"specMax\": 8608.990645555543,\n          \"specText\": \"string\",\n          \"status\": \"OOS\",\n          \"enteredBy\": \"string\",\n          \"enteredDate\": \"2023-11-21T22:45:02.450Z\",\n          \"approvedBy\": \"string\",\n          \"approvedDate\": \"2022-03-03T15:04:33.853Z\"\n        },\n        {\n          \"resultId\": \"string\",\n          \"testId\": \"string\",\n          \"parameterName\": \"string\",\n          \"resultValue\": \"string\",\n          \"resultNumeric\": 857.8921803094141,\n          \"unit\": \"string\",\n          \"specMin\": 150.40167766873557,\n          \"specMax\": 5719.803134503791,\n          \"specText\": \"string\",\n          \"status\": \"PENDING\",\n          \"enteredBy\": \"string\",\n          \"enteredDate\": \"2011-02-22T09:18:14.448Z\",\n          \"approvedBy\": \"string\",\n          \"approvedDate\": \"1973-11-04T10:21:33.141Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "683a83ba-7b58-4190-b1fb-ff45c1c43fad",
+              "name": "Invalid sample data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "samples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sampleType\": \"<string>\",\n  \"lotNumber\": \"<string>\",\n  \"sampleDescription\": \"<string>\",\n  \"projectId\": \"<string>\",\n  \"productId\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"quantityUnit\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"storageLocation\": \"<string>\",\n  \"customFields\": {\n    \"key_0\": 9889.071020121251,\n    \"key_1\": 3835,\n    \"key_2\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c2d86bbc-eba3-4386-8e64-4bbae1021108",
+              "name": "Business rule violation (e.g., duplicate lot number)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "samples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sampleType\": \"<string>\",\n  \"lotNumber\": \"<string>\",\n  \"sampleDescription\": \"<string>\",\n  \"projectId\": \"<string>\",\n  \"productId\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"quantityUnit\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"storageLocation\": \"<string>\",\n  \"customFields\": {\n    \"key_0\": 9889.071020121251,\n    \"key_1\": 3835,\n    \"key_2\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f39b474d-215f-4f41-a0ed-54e078ef8a43",
+          "name": "Get sample details",
+          "request": {
+            "name": "Get sample details",
+            "description": {
+              "content": "Returns detailed information for a specific sample including all tests, results, and chain of custody information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "samples",
+                ":sampleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sampleId",
+                  "description": "(Required) LabVantage sample identifier (SDID)"
+                },
+                {
+                  "description": "LabVantage instance hostname prefix",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1d415d3-843b-4c47-99c4-eaa58ec25b8e",
+              "name": "Sample returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "samples",
+                    ":sampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) LabVantage sample identifier (SDID)"
+                    },
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sampleId\": \"string\",\n  \"sampleNumber\": \"string\",\n  \"sampleType\": \"string\",\n  \"sampleDescription\": \"string\",\n  \"status\": \"Complete\",\n  \"lotNumber\": \"string\",\n  \"projectId\": \"string\",\n  \"productId\": \"string\",\n  \"loginDate\": \"1979-03-27T17:58:23.942Z\",\n  \"loginUser\": \"string\",\n  \"dueDate\": \"1984-07-14T04:26:53.910Z\",\n  \"storageLocation\": \"string\",\n  \"quantity\": 3349.2124163727776,\n  \"quantityUnit\": \"string\",\n  \"tests\": [\n    {\n      \"testId\": \"string\",\n      \"sampleId\": \"string\",\n      \"testMethod\": \"string\",\n      \"testMethodDescription\": \"string\",\n      \"status\": \"In Progress\",\n      \"priority\": \"ROUTINE\",\n      \"requestedDate\": \"2007-01-02T08:07:22.607Z\",\n      \"scheduledDate\": \"1960-05-11T06:11:51.363Z\",\n      \"completedDate\": \"2015-10-08T15:24:19.858Z\",\n      \"assignedAnalyst\": \"string\",\n      \"instrumentId\": \"string\",\n      \"overallResult\": \"OOS\",\n      \"results\": [\n        {\n          \"resultId\": \"string\",\n          \"testId\": \"string\",\n          \"parameterName\": \"string\",\n          \"resultValue\": \"string\",\n          \"resultNumeric\": 5049.555064745358,\n          \"unit\": \"string\",\n          \"specMin\": 643.6007591173254,\n          \"specMax\": 3021.8651545181983,\n          \"specText\": \"string\",\n          \"status\": \"FAIL\",\n          \"enteredBy\": \"string\",\n          \"enteredDate\": \"2009-01-09T21:50:39.866Z\",\n          \"approvedBy\": \"string\",\n          \"approvedDate\": \"1950-07-24T03:47:32.189Z\"\n        },\n        {\n          \"resultId\": \"string\",\n          \"testId\": \"string\",\n          \"parameterName\": \"string\",\n          \"resultValue\": \"string\",\n          \"resultNumeric\": 5246.259635347598,\n          \"unit\": \"string\",\n          \"specMin\": 1874.2768237808261,\n          \"specMax\": 3319.9211708608145,\n          \"specText\": \"string\",\n          \"status\": \"OOS\",\n          \"enteredBy\": \"string\",\n          \"enteredDate\": \"2018-02-18T17:16:27.658Z\",\n          \"approvedBy\": \"string\",\n          \"approvedDate\": \"2025-01-25T09:43:54.998Z\"\n        }\n      ]\n    },\n    {\n      \"testId\": \"string\",\n      \"sampleId\": \"string\",\n      \"testMethod\": \"string\",\n      \"testMethodDescription\": \"string\",\n      \"status\": \"Scheduled\",\n      \"priority\": \"ROUTINE\",\n      \"requestedDate\": \"1975-10-22T15:05:15.520Z\",\n      \"scheduledDate\": \"1980-01-15T13:16:47.889Z\",\n      \"completedDate\": \"1961-06-18T10:35:10.096Z\",\n      \"assignedAnalyst\": \"string\",\n      \"instrumentId\": \"string\",\n      \"overallResult\": \"PASS\",\n      \"results\": [\n        {\n          \"resultId\": \"string\",\n          \"testId\": \"string\",\n          \"parameterName\": \"string\",\n          \"resultValue\": \"string\",\n          \"resultNumeric\": 4628.483031401825,\n          \"unit\": \"string\",\n          \"specMin\": 8845.749900209488,\n          \"specMax\": 8608.990645555543,\n          \"specText\": \"string\",\n          \"status\": \"OOS\",\n          \"enteredBy\": \"string\",\n          \"enteredDate\": \"2023-11-21T22:45:02.450Z\",\n          \"approvedBy\": \"string\",\n          \"approvedDate\": \"2022-03-03T15:04:33.853Z\"\n        },\n        {\n          \"resultId\": \"string\",\n          \"testId\": \"string\",\n          \"parameterName\": \"string\",\n          \"resultValue\": \"string\",\n          \"resultNumeric\": 857.8921803094141,\n          \"unit\": \"string\",\n          \"specMin\": 150.40167766873557,\n          \"specMax\": 5719.803134503791,\n          \"specText\": \"string\",\n          \"status\": \"PENDING\",\n          \"enteredBy\": \"string\",\n          \"enteredDate\": \"2011-02-22T09:18:14.448Z\",\n          \"approvedBy\": \"string\",\n          \"approvedDate\": \"1973-11-04T10:21:33.141Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec59ac16-5376-4897-85ca-a115f8d1ee18",
+              "name": "Sample not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "samples",
+                    ":sampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) LabVantage sample identifier (SDID)"
+                    },
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8141777c-0452-458a-a1d8-fcdd59fce4a9",
+          "name": "Update sample",
+          "request": {
+            "name": "Update sample",
+            "description": {
+              "content": "Updates mutable fields on a sample record (status, storage location, notes). GxP audit trail is automatically generated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "samples",
+                ":sampleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sampleId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "LabVantage instance hostname prefix",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\",\n  \"storageLocation\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"dueDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "20bb5a11-aab2-4ad3-a72a-02fefe2806d9",
+              "name": "Sample updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "samples",
+                    ":sampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"storageLocation\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"dueDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sampleId\": \"string\",\n  \"sampleNumber\": \"string\",\n  \"sampleType\": \"string\",\n  \"sampleDescription\": \"string\",\n  \"status\": \"Complete\",\n  \"lotNumber\": \"string\",\n  \"projectId\": \"string\",\n  \"productId\": \"string\",\n  \"loginDate\": \"1979-03-27T17:58:23.942Z\",\n  \"loginUser\": \"string\",\n  \"dueDate\": \"1984-07-14T04:26:53.910Z\",\n  \"storageLocation\": \"string\",\n  \"quantity\": 3349.2124163727776,\n  \"quantityUnit\": \"string\",\n  \"tests\": [\n    {\n      \"testId\": \"string\",\n      \"sampleId\": \"string\",\n      \"testMethod\": \"string\",\n      \"testMethodDescription\": \"string\",\n      \"status\": \"In Progress\",\n      \"priority\": \"ROUTINE\",\n      \"requestedDate\": \"2007-01-02T08:07:22.607Z\",\n      \"scheduledDate\": \"1960-05-11T06:11:51.363Z\",\n      \"completedDate\": \"2015-10-08T15:24:19.858Z\",\n      \"assignedAnalyst\": \"string\",\n      \"instrumentId\": \"string\",\n      \"overallResult\": \"OOS\",\n      \"results\": [\n        {\n          \"resultId\": \"string\",\n          \"testId\": \"string\",\n          \"parameterName\": \"string\",\n          \"resultValue\": \"string\",\n          \"resultNumeric\": 5049.555064745358,\n          \"unit\": \"string\",\n          \"specMin\": 643.6007591173254,\n          \"specMax\": 3021.8651545181983,\n          \"specText\": \"string\",\n          \"status\": \"FAIL\",\n          \"enteredBy\": \"string\",\n          \"enteredDate\": \"2009-01-09T21:50:39.866Z\",\n          \"approvedBy\": \"string\",\n          \"approvedDate\": \"1950-07-24T03:47:32.189Z\"\n        },\n        {\n          \"resultId\": \"string\",\n          \"testId\": \"string\",\n          \"parameterName\": \"string\",\n          \"resultValue\": \"string\",\n          \"resultNumeric\": 5246.259635347598,\n          \"unit\": \"string\",\n          \"specMin\": 1874.2768237808261,\n          \"specMax\": 3319.9211708608145,\n          \"specText\": \"string\",\n          \"status\": \"OOS\",\n          \"enteredBy\": \"string\",\n          \"enteredDate\": \"2018-02-18T17:16:27.658Z\",\n          \"approvedBy\": \"string\",\n          \"approvedDate\": \"2025-01-25T09:43:54.998Z\"\n        }\n      ]\n    },\n    {\n      \"testId\": \"string\",\n      \"sampleId\": \"string\",\n      \"testMethod\": \"string\",\n      \"testMethodDescription\": \"string\",\n      \"status\": \"Scheduled\",\n      \"priority\": \"ROUTINE\",\n      \"requestedDate\": \"1975-10-22T15:05:15.520Z\",\n      \"scheduledDate\": \"1980-01-15T13:16:47.889Z\",\n      \"completedDate\": \"1961-06-18T10:35:10.096Z\",\n      \"assignedAnalyst\": \"string\",\n      \"instrumentId\": \"string\",\n      \"overallResult\": \"PASS\",\n      \"results\": [\n        {\n          \"resultId\": \"string\",\n          \"testId\": \"string\",\n          \"parameterName\": \"string\",\n          \"resultValue\": \"string\",\n          \"resultNumeric\": 4628.483031401825,\n          \"unit\": \"string\",\n          \"specMin\": 8845.749900209488,\n          \"specMax\": 8608.990645555543,\n          \"specText\": \"string\",\n          \"status\": \"OOS\",\n          \"enteredBy\": \"string\",\n          \"enteredDate\": \"2023-11-21T22:45:02.450Z\",\n          \"approvedBy\": \"string\",\n          \"approvedDate\": \"2022-03-03T15:04:33.853Z\"\n        },\n        {\n          \"resultId\": \"string\",\n          \"testId\": \"string\",\n          \"parameterName\": \"string\",\n          \"resultValue\": \"string\",\n          \"resultNumeric\": 857.8921803094141,\n          \"unit\": \"string\",\n          \"specMin\": 150.40167766873557,\n          \"specMax\": 5719.803134503791,\n          \"specText\": \"string\",\n          \"status\": \"PENDING\",\n          \"enteredBy\": \"string\",\n          \"enteredDate\": \"2011-02-22T09:18:14.448Z\",\n          \"approvedBy\": \"string\",\n          \"approvedDate\": \"1973-11-04T10:21:33.141Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04dc3621-d2e2-4b44-ae2f-544ee70ca270",
+              "name": "Sample not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "samples",
+                    ":sampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"storageLocation\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"dueDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "25800fae-f3f0-4ca3-ab45-ccb454ad7646",
+      "name": "Tests",
+      "description": {
+        "content": "Test requests and analytical procedures",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "69fc11d5-9028-4a48-b56b-c58d79cf4d9b",
+          "name": "List tests for a sample",
+          "request": {
+            "name": "List tests for a sample",
+            "description": {
+              "content": "Returns all test requests associated with a sample including status, assigned analyst, and results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "samples",
+                ":sampleId",
+                "tests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sampleId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "LabVantage instance hostname prefix",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "59b71966-3dca-4d23-9289-204e412c2a69",
+              "name": "Tests returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "samples",
+                    ":sampleId",
+                    "tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tests\": [\n    {\n      \"testId\": \"string\",\n      \"sampleId\": \"string\",\n      \"testMethod\": \"string\",\n      \"testMethodDescription\": \"string\",\n      \"status\": \"Complete\",\n      \"priority\": \"ROUTINE\",\n      \"requestedDate\": \"1999-09-03T15:01:50.133Z\",\n      \"scheduledDate\": \"2014-03-30T13:50:48.283Z\",\n      \"completedDate\": \"1998-11-30T19:36:38.220Z\",\n      \"assignedAnalyst\": \"string\",\n      \"instrumentId\": \"string\",\n      \"overallResult\": \"FAIL\",\n      \"results\": [\n        {\n          \"resultId\": \"string\",\n          \"testId\": \"string\",\n          \"parameterName\": \"string\",\n          \"resultValue\": \"string\",\n          \"resultNumeric\": 3200.9284550098528,\n          \"unit\": \"string\",\n          \"specMin\": 3488.7807400782567,\n          \"specMax\": 4886.399267996775,\n          \"specText\": \"string\",\n          \"status\": \"PASS\",\n          \"enteredBy\": \"string\",\n          \"enteredDate\": \"1979-11-18T06:12:26.134Z\",\n          \"approvedBy\": \"string\",\n          \"approvedDate\": \"2011-07-17T07:45:06.280Z\"\n        },\n        {\n          \"resultId\": \"string\",\n          \"testId\": \"string\",\n          \"parameterName\": \"string\",\n          \"resultValue\": \"string\",\n          \"resultNumeric\": 2699.401824433697,\n          \"unit\": \"string\",\n          \"specMin\": 5766.704237414746,\n          \"specMax\": 7138.340967750234,\n          \"specText\": \"string\",\n          \"status\": \"INCONCLUSIVE\",\n          \"enteredBy\": \"string\",\n          \"enteredDate\": \"1947-09-03T02:27:02.899Z\",\n          \"approvedBy\": \"string\",\n          \"approvedDate\": \"1994-06-26T19:54:55.604Z\"\n        }\n      ]\n    },\n    {\n      \"testId\": \"string\",\n      \"sampleId\": \"string\",\n      \"testMethod\": \"string\",\n      \"testMethodDescription\": \"string\",\n      \"status\": \"In Progress\",\n      \"priority\": \"URGENT\",\n      \"requestedDate\": \"2012-04-09T02:23:09.828Z\",\n      \"scheduledDate\": \"2004-10-26T05:17:03.776Z\",\n      \"completedDate\": \"1961-09-02T04:43:22.176Z\",\n      \"assignedAnalyst\": \"string\",\n      \"instrumentId\": \"string\",\n      \"overallResult\": \"OOS\",\n      \"results\": [\n        {\n          \"resultId\": \"string\",\n          \"testId\": \"string\",\n          \"parameterName\": \"string\",\n          \"resultValue\": \"string\",\n          \"resultNumeric\": 2254.8469495773506,\n          \"unit\": \"string\",\n          \"specMin\": 5045.701026699935,\n          \"specMax\": 3155.7422883362283,\n          \"specText\": \"string\",\n          \"status\": \"PENDING\",\n          \"enteredBy\": \"string\",\n          \"enteredDate\": \"1999-04-27T02:33:01.352Z\",\n          \"approvedBy\": \"string\",\n          \"approvedDate\": \"1969-03-19T22:40:26.480Z\"\n        },\n        {\n          \"resultId\": \"string\",\n          \"testId\": \"string\",\n          \"parameterName\": \"string\",\n          \"resultValue\": \"string\",\n          \"resultNumeric\": 7334.145996451261,\n          \"unit\": \"string\",\n          \"specMin\": 2869.5355470195072,\n          \"specMax\": 1083.2077126517813,\n          \"specText\": \"string\",\n          \"status\": \"FAIL\",\n          \"enteredBy\": \"string\",\n          \"enteredDate\": \"1960-03-22T16:50:49.923Z\",\n          \"approvedBy\": \"string\",\n          \"approvedDate\": \"1962-07-09T18:22:56.151Z\"\n        }\n      ]\n    }\n  ],\n  \"total\": 6349\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "801907c1-4c9b-49db-80cf-e9e8fd6c4a68",
+          "name": "Request a test",
+          "request": {
+            "name": "Request a test",
+            "description": {
+              "content": "Creates a new test request for a sample. The test method must be defined in the LabVantage method library.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "samples",
+                ":sampleId",
+                "tests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sampleId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "LabVantage instance hostname prefix",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"testMethod\": \"<string>\",\n  \"priority\": \"ROUTINE\",\n  \"dueDate\": \"<dateTime>\",\n  \"assignedAnalyst\": \"<string>\",\n  \"instrumentId\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "195330ae-398d-4cd7-9e87-1d420133ddd6",
+              "name": "Test request created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "samples",
+                    ":sampleId",
+                    "tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"testMethod\": \"<string>\",\n  \"priority\": \"ROUTINE\",\n  \"dueDate\": \"<dateTime>\",\n  \"assignedAnalyst\": \"<string>\",\n  \"instrumentId\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"testId\": \"string\",\n  \"sampleId\": \"string\",\n  \"testMethod\": \"string\",\n  \"testMethodDescription\": \"string\",\n  \"status\": \"Pending\",\n  \"priority\": \"ROUTINE\",\n  \"requestedDate\": \"1962-11-28T00:54:14.261Z\",\n  \"scheduledDate\": \"2007-10-23T13:03:10.940Z\",\n  \"completedDate\": \"1970-10-04T04:50:27.449Z\",\n  \"assignedAnalyst\": \"string\",\n  \"instrumentId\": \"string\",\n  \"overallResult\": \"PENDING\",\n  \"results\": [\n    {\n      \"resultId\": \"string\",\n      \"testId\": \"string\",\n      \"parameterName\": \"string\",\n      \"resultValue\": \"string\",\n      \"resultNumeric\": 1807.0569036726547,\n      \"unit\": \"string\",\n      \"specMin\": 2740.693825807603,\n      \"specMax\": 9747.949223469126,\n      \"specText\": \"string\",\n      \"status\": \"OOS\",\n      \"enteredBy\": \"string\",\n      \"enteredDate\": \"1975-06-25T07:44:59.414Z\",\n      \"approvedBy\": \"string\",\n      \"approvedDate\": \"1968-11-12T20:48:42.055Z\"\n    },\n    {\n      \"resultId\": \"string\",\n      \"testId\": \"string\",\n      \"parameterName\": \"string\",\n      \"resultValue\": \"string\",\n      \"resultNumeric\": 4365.549669014806,\n      \"unit\": \"string\",\n      \"specMin\": 1204.3766229045373,\n      \"specMax\": 285.457821273849,\n      \"specText\": \"string\",\n      \"status\": \"FAIL\",\n      \"enteredBy\": \"string\",\n      \"enteredDate\": \"2017-09-10T00:40:16.189Z\",\n      \"approvedBy\": \"string\",\n      \"approvedDate\": \"1974-02-09T03:17:02.147Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84a1793f-dee6-4b1c-bb7c-bb9a1c932ff2",
+              "name": "Invalid test request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "samples",
+                    ":sampleId",
+                    "tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"testMethod\": \"<string>\",\n  \"priority\": \"ROUTINE\",\n  \"dueDate\": \"<dateTime>\",\n  \"assignedAnalyst\": \"<string>\",\n  \"instrumentId\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "LabVantage instance hostname prefix",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourlab",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}.labvantage.example.com/labvantage/rest/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4071399e-22b5-4906-b342-7dfd99bbd665",
+    "name": "LabVantage LIMS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "LabVantage LIMS (Laboratory Information Management System) REST API for sample management, test result recording, instrument integration, and regulatory compliance data exchange. Supports GxP-compliant workflows for pharmaceutical, biotech, and clinical laboratory environments. The LabVantage REST API provides access to samples, tests, results, containers, and laboratory schedules via JSON over HTTPS.\n\nContact Support:\n Name: LabVantage Customer Care",
+      "type": "text/plain"
+    }
+  }
+}

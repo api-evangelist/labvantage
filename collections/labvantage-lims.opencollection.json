@@ -1,0 +1,309 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LabVantage LIMS API",
+    "version": "8.8.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Samples",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List samples",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.labvantage.example.com/labvantage/rest/v1/samples",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sampleType",
+                "value": "",
+                "type": "query",
+                "description": "Sample type code (e.g., \"BLOOD\", \"PLASMA\", \"TABLET\")"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "lotNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns samples in the LIMS with optional filtering by status, sample type, project, and date range."
+        },
+        {
+          "info": {
+            "name": "Login (register) a sample",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.labvantage.example.com/labvantage/rest/v1/samples",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Logs in a new sample to the LIMS, creating a sample record with assigned sample ID, lot number, and initial status. Required before tests can be requested."
+        },
+        {
+          "info": {
+            "name": "Get sample details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.labvantage.example.com/labvantage/rest/v1/samples/:sampleId",
+            "params": [
+              {
+                "name": "sampleId",
+                "value": "",
+                "type": "path",
+                "description": "LabVantage sample identifier (SDID)"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a specific sample including all tests, results, and chain of custody information."
+        },
+        {
+          "info": {
+            "name": "Update sample",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.labvantage.example.com/labvantage/rest/v1/samples/:sampleId",
+            "params": [
+              {
+                "name": "sampleId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates mutable fields on a sample record (status, storage location, notes). GxP audit trail is automatically generated."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List tests for a sample",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.labvantage.example.com/labvantage/rest/v1/samples/:sampleId/tests",
+            "params": [
+              {
+                "name": "sampleId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all test requests associated with a sample including status, assigned analyst, and results."
+        },
+        {
+          "info": {
+            "name": "Request a test",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.labvantage.example.com/labvantage/rest/v1/samples/:sampleId/tests",
+            "params": [
+              {
+                "name": "sampleId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new test request for a sample. The test method must be defined in the LabVantage method library."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Results",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get test results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.labvantage.example.com/labvantage/rest/v1/tests/:testId/results",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "path",
+                "description": "Test identifier"
+              }
+            ]
+          },
+          "docs": "Returns all result parameters for a specific test including values, units, specifications, and pass/fail status."
+        },
+        {
+          "info": {
+            "name": "Enter test results",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.labvantage.example.com/labvantage/rest/v1/tests/:testId/results",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enters result values for test parameters. Results are validated against specification limits. GxP electronic signatures can be required based on system configuration and result type. Out-of-specification (OOS) results trigger configured workflow actions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Containers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List containers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.labvantage.example.com/labvantage/rest/v1/containers",
+            "params": [
+              {
+                "name": "sampleId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "containerType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns sample containers in the LIMS with optional filtering by location, sample, and container type."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Instruments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List instruments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.labvantage.example.com/labvantage/rest/v1/instruments",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "instrumentType",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns laboratory instruments registered in the LIMS including calibration status and assigned methods."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
