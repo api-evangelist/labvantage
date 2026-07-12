@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/labvantage-lims-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BasicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic Authentication (username:password)
+  sources:
+  - openapi/labvantage-lims-openapi.yml
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  description: Bearer token authentication
+  sources:
+  - openapi/labvantage-lims-openapi.yml

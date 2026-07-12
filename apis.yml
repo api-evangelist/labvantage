@@ -70,6 +70,10 @@ apis:
     environments.
 
 common:
+- type: DomainSecurity
+  url: security/labvantage-domain-security.yml
+- type: Authentication
+  url: authentication/labvantage-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/labvantage
 name: LabVantage Solutions
