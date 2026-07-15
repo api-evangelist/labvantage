@@ -70,6 +70,8 @@ apis:
     environments.
 
 common:
+- type: AgenticAccess
+  url: agentic-access/labvantage-agentic-access.yml
 - type: DomainSecurity
   url: security/labvantage-domain-security.yml
 - type: Authentication
