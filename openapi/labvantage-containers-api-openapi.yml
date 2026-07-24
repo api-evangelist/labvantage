@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: LabVantage LIMS Containers API
+  description: LabVantage LIMS (Laboratory Information Management System) REST API for sample management, test result recording, instrument integration, and regulatory compliance data exchange. Supports GxP-compliant workflows for pharmaceutical, biotech, and clinical laboratory environments. The LabVantage REST API provides access to samples, tests, results, containers, and laboratory schedules via JSON over HTTPS.
+  version: 8.8.0
+  contact:
+    name: LabVantage Customer Care
+    url: https://www.labvantage.com/services/customer-care/
+  license:
+    name: LabVantage License
+    url: https://www.labvantage.com/privacy-policy/
+servers:
+- url: https://{instance}.labvantage.example.com/labvantage/rest/v1
+  description: LabVantage LIMS REST API
+  variables:
+    instance:
+      default: yourlab
+      description: LabVantage instance hostname prefix
+security:
+- BasicAuth: []
+- BearerAuth: []
+tags:
+- name: Containers
+  description: Sample containers and storage management
+paths:
+  /containers:
+    get:
+      operationId: listContainers
+      summary: List containers
+      description: Returns sample containers in the LIMS with optional filtering by location, sample, and container type.
+      tags:
+      - Containers
+      parameters:
+      - name: sampleId
+        in: query
+        schema:
+          type: string
+      - name: locationId
+        in: query
+        schema:
+          type: string
+      - name: containerType
+        in: query
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          default: 25
+      responses:
+        '200':
+          description: Containers returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContainerList'
+components:
+  schemas:
+    Container:
+      type: object
+      properties:
+        containerId:
+          type: string
+        containerType:
+          type: string
+        sampleId:
+          type: string
+        label:
+          type: string
+        barcode:
+          type: string
+        locationId:
+          type: string
+        quantity:
+          type: number
+        quantityUnit:
+          type: string
+        status:
+          type: string
+          enum:
+          - Active
+          - Empty
+          - Disposed
+        createdDate:
+          type: string
+          format: date-time
+    ContainerList:
+      type: object
+      properties:
+        containers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Container'
+        total:
+          type: integer
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication (username:password)
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication
+externalDocs:
+  description: LabVantage Documentation
+  url: https://www.labvantage.com/

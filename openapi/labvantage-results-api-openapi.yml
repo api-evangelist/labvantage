@@ -1,0 +1,186 @@
+openapi: 3.1.0
+info:
+  title: LabVantage LIMS Containers Results API
+  description: LabVantage LIMS (Laboratory Information Management System) REST API for sample management, test result recording, instrument integration, and regulatory compliance data exchange. Supports GxP-compliant workflows for pharmaceutical, biotech, and clinical laboratory environments. The LabVantage REST API provides access to samples, tests, results, containers, and laboratory schedules via JSON over HTTPS.
+  version: 8.8.0
+  contact:
+    name: LabVantage Customer Care
+    url: https://www.labvantage.com/services/customer-care/
+  license:
+    name: LabVantage License
+    url: https://www.labvantage.com/privacy-policy/
+servers:
+- url: https://{instance}.labvantage.example.com/labvantage/rest/v1
+  description: LabVantage LIMS REST API
+  variables:
+    instance:
+      default: yourlab
+      description: LabVantage instance hostname prefix
+security:
+- BasicAuth: []
+- BearerAuth: []
+tags:
+- name: Results
+  description: Test result entry and retrieval
+paths:
+  /tests/{testId}/results:
+    get:
+      operationId: getTestResults
+      summary: Get test results
+      description: Returns all result parameters for a specific test including values, units, specifications, and pass/fail status.
+      tags:
+      - Results
+      parameters:
+      - name: testId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Test identifier
+      responses:
+        '200':
+          description: Test results returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultList'
+        '404':
+          description: Test not found
+    post:
+      operationId: enterTestResults
+      summary: Enter test results
+      description: Enters result values for test parameters. Results are validated against specification limits. GxP electronic signatures can be required based on system configuration and result type. Out-of-specification (OOS) results trigger configured workflow actions.
+      tags:
+      - Results
+      parameters:
+      - name: testId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResultEntryRequest'
+      responses:
+        '200':
+          description: Results entered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultList'
+        '400':
+          description: Invalid result data
+        '409':
+          description: Test already completed or locked
+components:
+  schemas:
+    ResultEntryRequest:
+      type: object
+      required:
+      - results
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            required:
+            - parameterName
+            - resultValue
+            properties:
+              parameterName:
+                type: string
+              resultValue:
+                type: string
+              unit:
+                type: string
+        electronicSignature:
+          type: object
+          description: Electronic signature for GxP-controlled result entry
+          properties:
+            username:
+              type: string
+            password:
+              type: string
+            reason:
+              type: string
+              enum:
+              - APPROVAL
+              - REVIEW
+              - AUTHORSHIP
+    ResultList:
+      type: object
+      properties:
+        testId:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result'
+        overallStatus:
+          type: string
+          enum:
+          - PASS
+          - FAIL
+          - OOS
+          - PENDING
+    Result:
+      type: object
+      properties:
+        resultId:
+          type: string
+        testId:
+          type: string
+        parameterName:
+          type: string
+          description: Test parameter name
+        resultValue:
+          type: string
+          description: Entered result value (stored as string to handle numeric, text, and list values)
+        resultNumeric:
+          type: number
+          description: Numeric interpretation of the result value
+        unit:
+          type: string
+          description: Unit of measure
+        specMin:
+          type: number
+          description: Specification lower limit
+        specMax:
+          type: number
+          description: Specification upper limit
+        specText:
+          type: string
+          description: Text specification (for non-numeric results)
+        status:
+          type: string
+          enum:
+          - PASS
+          - FAIL
+          - OOS
+          - INCONCLUSIVE
+          - PENDING
+        enteredBy:
+          type: string
+        enteredDate:
+          type: string
+          format: date-time
+        approvedBy:
+          type: string
+        approvedDate:
+          type: string
+          format: date-time
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication (username:password)
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication
+externalDocs:
+  description: LabVantage Documentation
+  url: https://www.labvantage.com/

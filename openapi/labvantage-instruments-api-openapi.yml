@@ -1,0 +1,104 @@
+openapi: 3.1.0
+info:
+  title: LabVantage LIMS Containers Instruments API
+  description: LabVantage LIMS (Laboratory Information Management System) REST API for sample management, test result recording, instrument integration, and regulatory compliance data exchange. Supports GxP-compliant workflows for pharmaceutical, biotech, and clinical laboratory environments. The LabVantage REST API provides access to samples, tests, results, containers, and laboratory schedules via JSON over HTTPS.
+  version: 8.8.0
+  contact:
+    name: LabVantage Customer Care
+    url: https://www.labvantage.com/services/customer-care/
+  license:
+    name: LabVantage License
+    url: https://www.labvantage.com/privacy-policy/
+servers:
+- url: https://{instance}.labvantage.example.com/labvantage/rest/v1
+  description: LabVantage LIMS REST API
+  variables:
+    instance:
+      default: yourlab
+      description: LabVantage instance hostname prefix
+security:
+- BasicAuth: []
+- BearerAuth: []
+tags:
+- name: Instruments
+  description: Laboratory instrument integration
+paths:
+  /instruments:
+    get:
+      operationId: listInstruments
+      summary: List instruments
+      description: Returns laboratory instruments registered in the LIMS including calibration status and assigned methods.
+      tags:
+      - Instruments
+      parameters:
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - Active
+          - Out of Service
+          - Calibration Due
+      - name: instrumentType
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Instruments returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstrumentList'
+components:
+  schemas:
+    InstrumentList:
+      type: object
+      properties:
+        instruments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Instrument'
+        total:
+          type: integer
+    Instrument:
+      type: object
+      properties:
+        instrumentId:
+          type: string
+        name:
+          type: string
+        instrumentType:
+          type: string
+        manufacturer:
+          type: string
+        model:
+          type: string
+        serialNumber:
+          type: string
+        status:
+          type: string
+          enum:
+          - Active
+          - Out of Service
+          - Calibration Due
+        lastCalibrationDate:
+          type: string
+          format: date
+        nextCalibrationDate:
+          type: string
+          format: date
+        location:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication (username:password)
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication
+externalDocs:
+  description: LabVantage Documentation
+  url: https://www.labvantage.com/
