@@ -1,0 +1,22 @@
+{
+  "provider": "labvantage",
+  "sources": [
+    "labvantage-containers-api-openapi.yml",
+    "labvantage-instruments-api-openapi.yml",
+    "labvantage-results-api-openapi.yml",
+    "labvantage-samples-api-openapi.yml",
+    "labvantage-tests-api-openapi.yml"
+  ],
+  "outputs": [
+    "labvantage-containers-api-openapi.yml",
+    "labvantage-instruments-api-openapi.yml",
+    "labvantage-results-api-openapi.yml",
+    "labvantage-samples-api-openapi.yml",
+    "labvantage-tests-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
