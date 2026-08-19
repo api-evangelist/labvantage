@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LabVantage LIMS Containers API",
+    "version": "8.8.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Containers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List containers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.labvantage.example.com/labvantage/rest/v1/containers",
+            "params": [
+              {
+                "name": "sampleId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "containerType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns sample containers in the LIMS with optional filtering by location, sample, and container type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

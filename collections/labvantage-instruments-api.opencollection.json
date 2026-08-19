@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LabVantage LIMS Containers Instruments API",
+    "version": "8.8.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instruments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List instruments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.labvantage.example.com/labvantage/rest/v1/instruments",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "instrumentType",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns laboratory instruments registered in the LIMS including calibration status and assigned methods."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

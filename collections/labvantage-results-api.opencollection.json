@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LabVantage LIMS Containers Results API",
+    "version": "8.8.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Results",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get test results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.labvantage.example.com/labvantage/rest/v1/tests/:testId/results",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "path",
+                "description": "Test identifier"
+              }
+            ]
+          },
+          "docs": "Returns all result parameters for a specific test including values, units, specifications, and pass/fail status."
+        },
+        {
+          "info": {
+            "name": "Enter test results",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.labvantage.example.com/labvantage/rest/v1/tests/:testId/results",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enters result values for test parameters. Results are validated against specification limits. GxP electronic signatures can be required based on system configuration and result type. Out-of-specification (OOS) results trigger configured workflow actions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

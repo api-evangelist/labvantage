@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LabVantage LIMS Containers Tests API",
+    "version": "8.8.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List tests for a sample",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.labvantage.example.com/labvantage/rest/v1/samples/:sampleId/tests",
+            "params": [
+              {
+                "name": "sampleId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all test requests associated with a sample including status, assigned analyst, and results."
+        },
+        {
+          "info": {
+            "name": "Request a test",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.labvantage.example.com/labvantage/rest/v1/samples/:sampleId/tests",
+            "params": [
+              {
+                "name": "sampleId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new test request for a sample. The test method must be defined in the LabVantage method library."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

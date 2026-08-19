@@ -1,0 +1,184 @@
+{
+  "item": [
+    {
+      "id": "9c76be6b-6ab4-4352-96f7-aa7e54efdbd7",
+      "name": "Containers",
+      "description": {
+        "content": "Sample containers and storage management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "72faaf63-c81d-46ef-81b3-f9ef87821f89",
+          "name": "List containers",
+          "request": {
+            "name": "List containers",
+            "description": {
+              "content": "Returns sample containers in the LIMS with optional filtering by location, sample, and container type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "containers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sampleId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "locationId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "containerType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "LabVantage instance hostname prefix",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2eb96314-29a8-4c2f-ae71-49faf31bacdf",
+              "name": "Containers returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "containers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sampleId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "containerType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"containers\": [\n    {\n      \"containerId\": \"string\",\n      \"containerType\": \"string\",\n      \"sampleId\": \"string\",\n      \"label\": \"string\",\n      \"barcode\": \"string\",\n      \"locationId\": \"string\",\n      \"quantity\": 2020.5267157891315,\n      \"quantityUnit\": \"string\",\n      \"status\": \"Empty\",\n      \"createdDate\": \"2025-02-20T04:36:50.608Z\"\n    },\n    {\n      \"containerId\": \"string\",\n      \"containerType\": \"string\",\n      \"sampleId\": \"string\",\n      \"label\": \"string\",\n      \"barcode\": \"string\",\n      \"locationId\": \"string\",\n      \"quantity\": 704.5688679844931,\n      \"quantityUnit\": \"string\",\n      \"status\": \"Empty\",\n      \"createdDate\": \"1960-11-05T09:51:40.976Z\"\n    }\n  ],\n  \"total\": 9318\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "LabVantage instance hostname prefix",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourlab",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}.labvantage.example.com/labvantage/rest/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a427f93d-4e82-4df8-b3b3-eb76f3a51a89",
+    "name": "LabVantage LIMS Containers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "LabVantage LIMS (Laboratory Information Management System) REST API for sample management, test result recording, instrument integration, and regulatory compliance data exchange. Supports GxP-compliant workflows for pharmaceutical, biotech, and clinical laboratory environments. The LabVantage REST API provides access to samples, tests, results, containers, and laboratory schedules via JSON over HTTPS.\n\nContact Support:\n Name: LabVantage Customer Care",
+      "type": "text/plain"
+    }
+  }
+}

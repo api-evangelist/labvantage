@@ -1,0 +1,166 @@
+{
+  "item": [
+    {
+      "id": "a27cf111-e5be-4da6-a7dd-dccc67c92701",
+      "name": "Instruments",
+      "description": {
+        "content": "Laboratory instrument integration",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6f6bfedd-f8fb-48d7-b854-3e012ac111ed",
+          "name": "List instruments",
+          "request": {
+            "name": "List instruments",
+            "description": {
+              "content": "Returns laboratory instruments registered in the LIMS including calibration status and assigned methods.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instruments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "instrumentType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "LabVantage instance hostname prefix",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c0b2c8e-a950-4078-a17a-4aa4a7eb4f3c",
+              "name": "Instruments returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "instrumentType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "LabVantage instance hostname prefix",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"instruments\": [\n    {\n      \"instrumentId\": \"string\",\n      \"name\": \"string\",\n      \"instrumentType\": \"string\",\n      \"manufacturer\": \"string\",\n      \"model\": \"string\",\n      \"serialNumber\": \"string\",\n      \"status\": \"Calibration Due\",\n      \"lastCalibrationDate\": \"2025-05-28\",\n      \"nextCalibrationDate\": \"1992-02-18\",\n      \"location\": \"string\"\n    },\n    {\n      \"instrumentId\": \"string\",\n      \"name\": \"string\",\n      \"instrumentType\": \"string\",\n      \"manufacturer\": \"string\",\n      \"model\": \"string\",\n      \"serialNumber\": \"string\",\n      \"status\": \"Out of Service\",\n      \"lastCalibrationDate\": \"2006-09-12\",\n      \"nextCalibrationDate\": \"1990-04-14\",\n      \"location\": \"string\"\n    }\n  ],\n  \"total\": 4048\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "LabVantage instance hostname prefix",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourlab",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}.labvantage.example.com/labvantage/rest/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "951ba803-bc81-4114-979d-13d46fecdfa8",
+    "name": "LabVantage LIMS Containers Instruments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "LabVantage LIMS (Laboratory Information Management System) REST API for sample management, test result recording, instrument integration, and regulatory compliance data exchange. Supports GxP-compliant workflows for pharmaceutical, biotech, and clinical laboratory environments. The LabVantage REST API provides access to samples, tests, results, containers, and laboratory schedules via JSON over HTTPS.\n\nContact Support:\n Name: LabVantage Customer Care",
+      "type": "text/plain"
+    }
+  }
+}
