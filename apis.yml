@@ -1,5 +1,6 @@
 aid: labvantage
 url: https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/apis.yml
+specificationVersion: '0.23'
 apis:
 - aid: labvantage:labvantage-eln-api
   name: LabVantage ELN (Electronic Lab Notebook) API
