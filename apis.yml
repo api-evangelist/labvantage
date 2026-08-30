@@ -21,7 +21,6 @@ apis:
   - Pharma
   - Research
   - Scientific
-  image: https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/image.png
   humanURL: https://www.labvantage.com/products/
   baseURL: https://api.labvantage.example.com
   properties:
@@ -40,7 +39,6 @@ apis:
   - Pharma
   - Scientific Data
   - SDMS
-  image: https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/image.png
   humanURL: https://www.labvantage.com/products/
   baseURL: https://api.labvantage.example.com
   properties:
@@ -151,7 +149,6 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
-image: https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/image.png
 tags:
 - Pharma
 - Laboratory
