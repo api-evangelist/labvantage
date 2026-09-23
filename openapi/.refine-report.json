@@ -1,11 +1,7 @@
 {
   "provider": "labvantage",
   "sources": [
-    "labvantage-containers-api-openapi.yml",
-    "labvantage-instruments-api-openapi.yml",
-    "labvantage-results-api-openapi.yml",
-    "labvantage-samples-api-openapi.yml",
-    "labvantage-tests-api-openapi.yml"
+    "_original/labvantage-lims-openapi.yml"
   ],
   "outputs": [
     "labvantage-containers-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "labvantage-lims-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "labvantage-containers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "labvantage-instruments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "labvantage-results-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "labvantage-samples-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "labvantage-tests-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: LabVantage LIMS Containers Samples API
+  title: LabVantage LIMS Samples API
   description: LabVantage LIMS (Laboratory Information Management System) REST API for sample management, test result recording, instrument integration, and regulatory compliance data exchange. Supports GxP-compliant workflows for pharmaceutical, biotech, and clinical laboratory environments. The LabVantage REST API provides access to samples, tests, results, containers, and laboratory schedules via JSON over HTTPS.
   version: 8.8.0
   contact:
@@ -159,9 +159,20 @@ paths:
           description: Sample not found
 components:
   schemas:
-    SampleUpdate:
+    Sample:
       type: object
       properties:
+        sampleId:
+          type: string
+          description: LabVantage LIMS sample identifier (SDID)
+        sampleNumber:
+          type: string
+          description: Human-readable sample number
+        sampleType:
+          type: string
+          description: Sample type code
+        sampleDescription:
+          type: string
         status:
           type: string
           enum:
@@ -170,101 +181,32 @@ components:
           - Complete
           - Rejected
           - Disposed
-        storageLocation:
+        lotNumber:
           type: string
-        notes:
+          description: Material lot/batch number
+        projectId:
+          type: string
+        productId:
+          type: string
+        loginDate:
+          type: string
+          format: date-time
+          description: Date/time the sample was logged into the LIMS
+        loginUser:
           type: string
         dueDate:
           type: string
           format: date-time
-    Result:
-      type: object
-      properties:
-        resultId:
-          type: string
-        testId:
-          type: string
-        parameterName:
-          type: string
-          description: Test parameter name
-        resultValue:
-          type: string
-          description: Entered result value (stored as string to handle numeric, text, and list values)
-        resultNumeric:
-          type: number
-          description: Numeric interpretation of the result value
-        unit:
-          type: string
-          description: Unit of measure
-        specMin:
-          type: number
-          description: Specification lower limit
-        specMax:
-          type: number
-          description: Specification upper limit
-        specText:
-          type: string
-          description: Text specification (for non-numeric results)
-        status:
-          type: string
-          enum:
-          - PASS
-          - FAIL
-          - OOS
-          - INCONCLUSIVE
-          - PENDING
-        enteredBy:
-          type: string
-        enteredDate:
-          type: string
-          format: date-time
-        approvedBy:
-          type: string
-        approvedDate:
-          type: string
-          format: date-time
-    SampleLoginRequest:
-      type: object
-      required:
-      - sampleType
-      - lotNumber
-      properties:
-        sampleType:
-          type: string
-        lotNumber:
-          type: string
-        sampleDescription:
-          type: string
-        projectId:
-          type: string
-        productId:
+        storageLocation:
           type: string
         quantity:
           type: number
         quantityUnit:
           type: string
-        dueDate:
-          type: string
-          format: date-time
-        storageLocation:
-          type: string
-        customFields:
-          type: object
-          additionalProperties: true
-          description: Sample type-specific custom field values
-    SampleList:
-      type: object
-      properties:
-        samples:
+        tests:
           type: array
           items:
-            $ref: '#/components/schemas/Sample'
-        total:
-          type: integer
-        page:
-          type: integer
-        pageSize:
-          type: integer
+            $ref: '#/components/schemas/Test'
     Test:
       type: object
       properties:
@@ -316,20 +258,97 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Result'
-    Sample:
+    SampleList:
       type: object
       properties:
-        sampleId:
-          type: string
-          description: LabVantage LIMS sample identifier (SDID)
-        sampleNumber:
-          type: string
-          description: Human-readable sample number
+        samples:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sample'
+        total:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
+    SampleLoginRequest:
+      type: object
+      required:
+      - sampleType
+      - lotNumber
+      properties:
         sampleType:
           type: string
-          description: Sample type code
+        lotNumber:
+          type: string
         sampleDescription:
           type: string
+        projectId:
+          type: string
+        productId:
+          type: string
+        quantity:
+          type: number
+        quantityUnit:
+          type: string
+        dueDate:
+          type: string
+          format: date-time
+        storageLocation:
+          type: string
+        customFields:
+          type: object
+          additionalProperties: true
+          description: Sample type-specific custom field values
+    Result:
+      type: object
+      properties:
+        resultId:
+          type: string
+        testId:
+          type: string
+        parameterName:
+          type: string
+          description: Test parameter name
+        resultValue:
+          type: string
+          description: Entered result value (stored as string to handle numeric, text, and list values)
+        resultNumeric:
+          type: number
+          description: Numeric interpretation of the result value
+        unit:
+          type: string
+          description: Unit of measure
+        specMin:
+          type: number
+          description: Specification lower limit
+        specMax:
+          type: number
+          description: Specification upper limit
+        specText:
+          type: string
+          description: Text specification (for non-numeric results)
+        status:
+          type: string
+          enum:
+          - PASS
+          - FAIL
+          - OOS
+          - INCONCLUSIVE
+          - PENDING
+        enteredBy:
+          type: string
+        enteredDate:
+          type: string
+          format: date-time
+        approvedBy:
+          type: string
+        approvedDate:
+          type: string
+          format: date-time
+    SampleUpdate:
+      type: object
+      properties:
         status:
           type: string
           enum:
@@ -338,32 +357,13 @@ components:
           - Complete
           - Rejected
           - Disposed
-        lotNumber:
+        storageLocation:
           type: string
-          description: Material lot/batch number
-        projectId:
-          type: string
-        productId:
-          type: string
-        loginDate:
-          type: string
-          format: date-time
-          description: Date/time the sample was logged into the LIMS
-        loginUser:
+        notes:
           type: string
         dueDate:
           type: string
           format: date-time
-        storageLocation:
-          type: string
-        quantity:
-          type: number
-        quantityUnit:
-          type: string
-        tests:
-          type: array
-          items:
-            $ref: '#/components/schemas/Test'
   securitySchemes:
     BasicAuth:
       type: http
