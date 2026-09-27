@@ -81,15 +81,76 @@ paths:
           description: Invalid test request
 components:
   schemas:
-    TestList:
+    Result:
       type: object
       properties:
-        tests:
-          type: array
-          items:
-            $ref: '#/components/schemas/Test'
-        total:
-          type: integer
+        resultId:
+          type: string
+        testId:
+          type: string
+        parameterName:
+          type: string
+          description: Test parameter name
+        resultValue:
+          type: string
+          description: Entered result value (stored as string to handle numeric, text, and list values)
+        resultNumeric:
+          type: number
+          description: Numeric interpretation of the result value
+        unit:
+          type: string
+          description: Unit of measure
+        specMin:
+          type: number
+          description: Specification lower limit
+        specMax:
+          type: number
+          description: Specification upper limit
+        specText:
+          type: string
+          description: Text specification (for non-numeric results)
+        status:
+          type: string
+          enum:
+          - PASS
+          - FAIL
+          - OOS
+          - INCONCLUSIVE
+          - PENDING
+        enteredBy:
+          type: string
+        enteredDate:
+          type: string
+          format: date-time
+        approvedBy:
+          type: string
+        approvedDate:
+          type: string
+          format: date-time
+    TestRequest:
+      type: object
+      required:
+      - testMethod
+      properties:
+        testMethod:
+          type: string
+          description: Test method code from the LabVantage method library
+        priority:
+          type: string
+          enum:
+          - ROUTINE
+          - URGENT
+          - STAT
+          default: ROUTINE
+        dueDate:
+          type: string
+          format: date-time
+        assignedAnalyst:
+          type: string
+        instrumentId:
+          type: string
+        notes:
+          type: string
     Test:
       type: object
       properties:
@@ -141,76 +202,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Result'
-    TestRequest:
-      type: object
-      required:
-      - testMethod
-      properties:
-        testMethod:
-          type: string
-          description: Test method code from the LabVantage method library
-        priority:
-          type: string
-          enum:
-          - ROUTINE
-          - URGENT
-          - STAT
-          default: ROUTINE
-        dueDate:
-          type: string
-          format: date-time
-        assignedAnalyst:
-          type: string
-        instrumentId:
-          type: string
-        notes:
-          type: string
-    Result:
+    TestList:
       type: object
       properties:
-        resultId:
-          type: string
-        testId:
-          type: string
-        parameterName:
-          type: string
-          description: Test parameter name
-        resultValue:
-          type: string
-          description: Entered result value (stored as string to handle numeric, text, and list values)
-        resultNumeric:
-          type: number
-          description: Numeric interpretation of the result value
-        unit:
-          type: string
-          description: Unit of measure
-        specMin:
-          type: number
-          description: Specification lower limit
-        specMax:
-          type: number
-          description: Specification upper limit
-        specText:
-          type: string
-          description: Text specification (for non-numeric results)
-        status:
-          type: string
-          enum:
-          - PASS
-          - FAIL
-          - OOS
-          - INCONCLUSIVE
-          - PENDING
-        enteredBy:
-          type: string
-        enteredDate:
-          type: string
-          format: date-time
-        approvedBy:
-          type: string
-        approvedDate:
-          type: string
-          format: date-time
+        tests:
+          type: array
+          items:
+            $ref: '#/components/schemas/Test'
+        total:
+          type: integer
   securitySchemes:
     BasicAuth:
       type: http
