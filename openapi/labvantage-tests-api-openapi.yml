@@ -81,6 +81,39 @@ paths:
           description: Invalid test request
 components:
   schemas:
+    TestRequest:
+      type: object
+      required:
+      - testMethod
+      properties:
+        testMethod:
+          type: string
+          description: Test method code from the LabVantage method library
+        priority:
+          type: string
+          enum:
+          - ROUTINE
+          - URGENT
+          - STAT
+          default: ROUTINE
+        dueDate:
+          type: string
+          format: date-time
+        assignedAnalyst:
+          type: string
+        instrumentId:
+          type: string
+        notes:
+          type: string
+    TestList:
+      type: object
+      properties:
+        tests:
+          type: array
+          items:
+            $ref: '#/components/schemas/Test'
+        total:
+          type: integer
     Result:
       type: object
       properties:
@@ -127,30 +160,6 @@ components:
         approvedDate:
           type: string
           format: date-time
-    TestRequest:
-      type: object
-      required:
-      - testMethod
-      properties:
-        testMethod:
-          type: string
-          description: Test method code from the LabVantage method library
-        priority:
-          type: string
-          enum:
-          - ROUTINE
-          - URGENT
-          - STAT
-          default: ROUTINE
-        dueDate:
-          type: string
-          format: date-time
-        assignedAnalyst:
-          type: string
-        instrumentId:
-          type: string
-        notes:
-          type: string
     Test:
       type: object
       properties:
@@ -202,15 +211,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Result'
-    TestList:
-      type: object
-      properties:
-        tests:
-          type: array
-          items:
-            $ref: '#/components/schemas/Test'
-        total:
-          type: integer
   securitySchemes:
     BasicAuth:
       type: http

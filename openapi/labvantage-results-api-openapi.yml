@@ -110,6 +110,22 @@ components:
               - APPROVAL
               - REVIEW
               - AUTHORSHIP
+    ResultList:
+      type: object
+      properties:
+        testId:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result'
+        overallStatus:
+          type: string
+          enum:
+          - PASS
+          - FAIL
+          - OOS
+          - PENDING
     Result:
       type: object
       properties:
@@ -156,22 +172,6 @@ components:
         approvedDate:
           type: string
           format: date-time
-    ResultList:
-      type: object
-      properties:
-        testId:
-          type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result'
-        overallStatus:
-          type: string
-          enum:
-          - PASS
-          - FAIL
-          - OOS
-          - PENDING
   securitySchemes:
     BasicAuth:
       type: http

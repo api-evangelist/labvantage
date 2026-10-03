@@ -159,20 +159,9 @@ paths:
           description: Sample not found
 components:
   schemas:
-    Sample:
+    SampleUpdate:
       type: object
       properties:
-        sampleId:
-          type: string
-          description: LabVantage LIMS sample identifier (SDID)
-        sampleNumber:
-          type: string
-          description: Human-readable sample number
-        sampleType:
-          type: string
-          description: Sample type code
-        sampleDescription:
-          type: string
         status:
           type: string
           enum:
@@ -181,32 +170,13 @@ components:
           - Complete
           - Rejected
           - Disposed
-        lotNumber:
+        storageLocation:
           type: string
-          description: Material lot/batch number
-        projectId:
-          type: string
-        productId:
-          type: string
-        loginDate:
-          type: string
-          format: date-time
-          description: Date/time the sample was logged into the LIMS
-        loginUser:
+        notes:
           type: string
         dueDate:
           type: string
           format: date-time
-        storageLocation:
-          type: string
-        quantity:
-          type: number
-        quantityUnit:
-          type: string
-        tests:
-          type: array
-          items:
-            $ref: '#/components/schemas/Test'
     SampleLoginRequest:
       type: object
       required:
@@ -249,52 +219,6 @@ components:
           type: integer
         pageSize:
           type: integer
-    Result:
-      type: object
-      properties:
-        resultId:
-          type: string
-        testId:
-          type: string
-        parameterName:
-          type: string
-          description: Test parameter name
-        resultValue:
-          type: string
-          description: Entered result value (stored as string to handle numeric, text, and list values)
-        resultNumeric:
-          type: number
-          description: Numeric interpretation of the result value
-        unit:
-          type: string
-          description: Unit of measure
-        specMin:
-          type: number
-          description: Specification lower limit
-        specMax:
-          type: number
-          description: Specification upper limit
-        specText:
-          type: string
-          description: Text specification (for non-numeric results)
-        status:
-          type: string
-          enum:
-          - PASS
-          - FAIL
-          - OOS
-          - INCONCLUSIVE
-          - PENDING
-        enteredBy:
-          type: string
-        enteredDate:
-          type: string
-          format: date-time
-        approvedBy:
-          type: string
-        approvedDate:
-          type: string
-          format: date-time
     Test:
       type: object
       properties:
@@ -346,9 +270,66 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Result'
-    SampleUpdate:
+    Result:
       type: object
       properties:
+        resultId:
+          type: string
+        testId:
+          type: string
+        parameterName:
+          type: string
+          description: Test parameter name
+        resultValue:
+          type: string
+          description: Entered result value (stored as string to handle numeric, text, and list values)
+        resultNumeric:
+          type: number
+          description: Numeric interpretation of the result value
+        unit:
+          type: string
+          description: Unit of measure
+        specMin:
+          type: number
+          description: Specification lower limit
+        specMax:
+          type: number
+          description: Specification upper limit
+        specText:
+          type: string
+          description: Text specification (for non-numeric results)
+        status:
+          type: string
+          enum:
+          - PASS
+          - FAIL
+          - OOS
+          - INCONCLUSIVE
+          - PENDING
+        enteredBy:
+          type: string
+        enteredDate:
+          type: string
+          format: date-time
+        approvedBy:
+          type: string
+        approvedDate:
+          type: string
+          format: date-time
+    Sample:
+      type: object
+      properties:
+        sampleId:
+          type: string
+          description: LabVantage LIMS sample identifier (SDID)
+        sampleNumber:
+          type: string
+          description: Human-readable sample number
+        sampleType:
+          type: string
+          description: Sample type code
+        sampleDescription:
+          type: string
         status:
           type: string
           enum:
@@ -357,13 +338,32 @@ components:
           - Complete
           - Rejected
           - Disposed
-        storageLocation:
+        lotNumber:
           type: string
-        notes:
+          description: Material lot/batch number
+        projectId:
+          type: string
+        productId:
+          type: string
+        loginDate:
+          type: string
+          format: date-time
+          description: Date/time the sample was logged into the LIMS
+        loginUser:
           type: string
         dueDate:
           type: string
           format: date-time
+        storageLocation:
+          type: string
+        quantity:
+          type: number
+        quantityUnit:
+          type: string
+        tests:
+          type: array
+          items:
+            $ref: '#/components/schemas/Test'
   securitySchemes:
     BasicAuth:
       type: http

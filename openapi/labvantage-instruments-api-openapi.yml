@@ -52,15 +52,6 @@ paths:
                 $ref: '#/components/schemas/InstrumentList'
 components:
   schemas:
-    InstrumentList:
-      type: object
-      properties:
-        instruments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Instrument'
-        total:
-          type: integer
     Instrument:
       type: object
       properties:
@@ -90,6 +81,15 @@ components:
           format: date
         location:
           type: string
+    InstrumentList:
+      type: object
+      properties:
+        instruments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Instrument'
+        total:
+          type: integer
   securitySchemes:
     BasicAuth:
       type: http
