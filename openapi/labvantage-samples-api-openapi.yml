@@ -159,66 +159,6 @@ paths:
           description: Sample not found
 components:
   schemas:
-    SampleUpdate:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - Pending
-          - In Progress
-          - Complete
-          - Rejected
-          - Disposed
-        storageLocation:
-          type: string
-        notes:
-          type: string
-        dueDate:
-          type: string
-          format: date-time
-    SampleLoginRequest:
-      type: object
-      required:
-      - sampleType
-      - lotNumber
-      properties:
-        sampleType:
-          type: string
-        lotNumber:
-          type: string
-        sampleDescription:
-          type: string
-        projectId:
-          type: string
-        productId:
-          type: string
-        quantity:
-          type: number
-        quantityUnit:
-          type: string
-        dueDate:
-          type: string
-          format: date-time
-        storageLocation:
-          type: string
-        customFields:
-          type: object
-          additionalProperties: true
-          description: Sample type-specific custom field values
-    SampleList:
-      type: object
-      properties:
-        samples:
-          type: array
-          items:
-            $ref: '#/components/schemas/Sample'
-        total:
-          type: integer
-        page:
-          type: integer
-        pageSize:
-          type: integer
     Test:
       type: object
       properties:
@@ -270,6 +210,35 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Result'
+    SampleLoginRequest:
+      type: object
+      required:
+      - sampleType
+      - lotNumber
+      properties:
+        sampleType:
+          type: string
+        lotNumber:
+          type: string
+        sampleDescription:
+          type: string
+        projectId:
+          type: string
+        productId:
+          type: string
+        quantity:
+          type: number
+        quantityUnit:
+          type: string
+        dueDate:
+          type: string
+          format: date-time
+        storageLocation:
+          type: string
+        customFields:
+          type: object
+          additionalProperties: true
+          description: Sample type-specific custom field values
     Result:
       type: object
       properties:
@@ -364,6 +333,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Test'
+    SampleList:
+      type: object
+      properties:
+        samples:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sample'
+        total:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
+    SampleUpdate:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - Pending
+          - In Progress
+          - Complete
+          - Rejected
+          - Disposed
+        storageLocation:
+          type: string
+        notes:
+          type: string
+        dueDate:
+          type: string
+          format: date-time
   securitySchemes:
     BasicAuth:
       type: http

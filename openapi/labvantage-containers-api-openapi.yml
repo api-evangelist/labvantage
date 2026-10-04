@@ -57,6 +57,15 @@ paths:
                 $ref: '#/components/schemas/ContainerList'
 components:
   schemas:
+    ContainerList:
+      type: object
+      properties:
+        containers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Container'
+        total:
+          type: integer
     Container:
       type: object
       properties:
@@ -85,15 +94,6 @@ components:
         createdDate:
           type: string
           format: date-time
-    ContainerList:
-      type: object
-      properties:
-        containers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Container'
-        total:
-          type: integer
   securitySchemes:
     BasicAuth:
       type: http
