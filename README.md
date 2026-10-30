@@ -1,4 +1,4 @@
-# LabVantage Solutions (labvantage)
+# LabVantage Solutions
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,90 +66,141 @@
 
 LabVantage Solutions provides LIMS (Laboratory Information Management System), ELN (Electronic Lab Notebook), LES (Laboratory Execution System), and SDMS (Scientific Data Management System) platforms with APIs for GxP-compliant data exchange in pharmaceutical, biotech, and clinical laboratory environments. Support is available 24/7 globally through the VantageCare portal.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/labvantage/refs/heads/main/apis.yml)
+**Areas:** Pharma · Laboratory · LIMS · Quality · GxP
 
-## Tags
+## LabVantage Solutions on APIs.io
 
-- Pharma
-- Laboratory
-- LIMS
-- Quality
-- GxP
+Everything profiled for LabVantage Solutions is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/labvantage/](https://apis.io/providers/labvantage/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (7)
 
-- **Modified:** 2026-04-28
+- [LabVantage ELN (Electronic Lab Notebook) API](https://apis.io/apis/labvantage/labvantage-eln-api/) — LabVantage ELN (Electronic Lab Notebook) APIs enable experiment data capture, protocol management, research record integration, and regulatory-compliant…
+- [LabVantage SDMS (Scientific Data Management) API](https://apis.io/apis/labvantage/labvantage-sdms-api/) — LabVantage SDMS (Scientific Data Management System) APIs enable acquisition, management, and retrieval of raw instrument data and analytical results from…
+- [LabVantage Solutions Containers API](https://apis.io/apis/labvantage/labvantage-containers-api/) — Sample containers and storage management
+- [LabVantage Solutions Instruments API](https://apis.io/apis/labvantage/labvantage-instruments-api/) — Laboratory instrument integration
+- [LabVantage Solutions Results API](https://apis.io/apis/labvantage/labvantage-results-api/) — Test result entry and retrieval
+- [LabVantage Solutions Samples API](https://apis.io/apis/labvantage/labvantage-samples-api/) — Sample lifecycle management (login, tracking, disposal)
+- [LabVantage Solutions Tests API](https://apis.io/apis/labvantage/labvantage-tests-api/) — Test requests and analytical procedures
 
-## APIs
+### Published properties
 
-### LabVantage LIMS API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-LabVantage LIMS (Laboratory Information Management System) APIs provide sample tracking, test result management, instrument integration, and regulatory compliance data exchange for pharmaceutical, biotech, and clinical laboratories under GxP compliance requirements.
+#### Agentic access (1)
 
-- **Human URL:** [https://www.labvantage.com/](https://www.labvantage.com/)
-- **Base URL:** `https://api.labvantage.example.com`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Labvantage Agentic Access](https://apis.io/agentic-access/labvantage/labvantage-agentic-access/)
 
-- Laboratory
-- LIMS
-- Pharma
-- Quality
-- REST
-- SOAP
+#### JSON Schema (1)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://www.labvantage.com/)
-- [Support](https://www.labvantage.com/services/customer-care/)
-- [OpenAPI](openapi/labvantage-lims-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/labvantage-lims.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/labvantage-lims.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [LabVantage LIMS Sample](https://apis.io/schemas/labvantage/labvantage-sample/)
 
-### LabVantage ELN (Electronic Lab Notebook) API
+#### JSON-LD (1)
 
-LabVantage ELN (Electronic Lab Notebook) APIs enable experiment data capture, protocol management, research record integration, and regulatory-compliant data management for scientific research laboratories.
+Linked-data contexts for the provider's vocabulary.
 
-- **Human URL:** [https://www.labvantage.com/products/](https://www.labvantage.com/products/)
-- **Base URL:** `https://api.labvantage.example.com`
+- [Labvantage Context](https://apis.io/jsonld/labvantage/labvantage-context/)
 
-#### Tags
+#### Collections (6)
 
-- ELN
-- Laboratory
-- Pharma
-- Research
-- Scientific
+Postman and Open Collection request collections.
 
-#### Properties
+- [LabVantage LIMS Containers API](https://apis.io/collections/labvantage/open-labvantage-containers-api/)
+- [LabVantage LIMS Containers Instruments API](https://apis.io/collections/labvantage/open-labvantage-instruments-api/)
+- [LabVantage LIMS API](https://apis.io/collections/labvantage/open-labvantage-lims/)
+- [LabVantage LIMS Containers Results API](https://apis.io/collections/labvantage/open-labvantage-results-api/)
+- [LabVantage LIMS Containers Samples API](https://apis.io/collections/labvantage/open-labvantage-samples-api/)
+- [LabVantage LIMS Containers Tests API](https://apis.io/collections/labvantage/open-labvantage-tests-api/)
 
-- [Documentation](https://www.labvantage.com/products/)
-- [Support](https://www.labvantage.com/services/customer-care/)
-- [Postman Collection](collections/labvantage-lims.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/labvantage-lims.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Governance rules (1)
 
-### LabVantage SDMS (Scientific Data Management) API
+Spectral rulesets for the provider's contracts.
 
-LabVantage SDMS (Scientific Data Management System) APIs enable acquisition, management, and retrieval of raw instrument data and analytical results from laboratory instruments for archival and compliance in pharmaceutical and research environments.
+- [LabVantage Solutions — jsonschema rules](https://apis.io/rules/labvantage/labvantage-jsonschema-spectral-rules/)
 
-- **Human URL:** [https://www.labvantage.com/products/](https://www.labvantage.com/products/)
-- **Base URL:** `https://api.labvantage.example.com`
+#### Security (2)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- Instrument Data
-- Laboratory
-- Pharma
-- Scientific Data
-- SDMS
+- [Labvantage Authentication](https://apis.io/security/labvantage/labvantage-authentication/)
+- [Labvantage Domain Security](https://apis.io/security/labvantage/labvantage-domain-security/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Documentation](https://www.labvantage.com/products/)
-- [Support](https://www.labvantage.com/services/customer-care/)
-- [Postman Collection](collections/labvantage-lims.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/labvantage-lims.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published plans, tiers and prices.
 
-## Common Properties
+- [Labvantage Plans Pricing](https://apis.io/plans/labvantage/labvantage-plans-pricing/)
 
-- [LinkedIn](https://www.linkedin.com/company/labvantage)
+#### Rate limits (1)
+
+Published request limits.
+
+- [Labvantage Rate Limits](https://apis.io/rate-limits/labvantage/labvantage-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Labvantage Finops](https://apis.io/finops/labvantage/labvantage-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://labvantage.com)
+
+## API Evangelist rating
+
+**Kin Score 27.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 55.2 |
+| Contract governance | 9.8 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 26.2 |
+| Access clarity | 5.3 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 13.3** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/labvantage/](https://apis.io/providers/labvantage/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for LabVantage Solutions: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/labvantage/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
